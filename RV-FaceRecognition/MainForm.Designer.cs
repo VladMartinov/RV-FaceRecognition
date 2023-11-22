@@ -28,8 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.formStyle = new RV_FaceRecognition.Components.RVFormStyle(this.components);
             this.SuspendLayout();
+            // 
+            // formStyle
+            // 
+            this.formStyle.Form = this;
+            this.formStyle.FormStyle = RV_FaceRecognition.Components.RVFormStyle.fStyle.UserStyle;
             // 
             // MainForm
             // 
@@ -46,6 +53,8 @@
         }
 
         #endregion
+
+        private Components.RVFormStyle formStyle;
     }
 }
 

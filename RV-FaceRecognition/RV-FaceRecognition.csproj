@@ -46,6 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\Controls\CustomButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\Controls\RVFormStyle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\Controls\RVFormStyle.Designer.cs">
+      <DependentUpon>RVFormStyle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Methods\Drawer.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
