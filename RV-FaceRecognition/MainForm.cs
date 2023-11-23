@@ -18,5 +18,17 @@ namespace RV_FaceRecognition
         {
             InitializeComponent();
         }
+
+        private void CustomButtonAuth_Click(object sender, EventArgs e)
+        {
+            FormLogin formLogin = new FormLogin();
+            formLogin.ShowDialog();
+        }
+
+        private void CustomButtonInfoWindow_Click(object sender, EventArgs e)
+        {
+            FormInfo formInfo = new FormInfo();
+            formInfo.ShowDialog();
+        }
     }
 }

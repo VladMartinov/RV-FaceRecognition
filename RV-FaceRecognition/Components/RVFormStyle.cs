@@ -41,7 +41,7 @@ namespace RV_FaceRecognition.Components
         private Size IconSize = new Size(12, 14);
 
         private StringFormat SF = new StringFormat();
-        private Font Font = new Font("Montserrat", 8f, FontStyle.Bold);
+        private Font Font = new Font("Open Sans", 10f, FontStyle.Bold);
 
         // Form move event
         bool MousePressed = false;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,6 @@ namespace RV_FaceRecognition.Components.Controls
                 if (value >= 0 && value <= 100)
                 {
                     roundingPercent = value;
-
                     Refresh();
                 }
             }
@@ -47,12 +47,10 @@ namespace RV_FaceRecognition.Components.Controls
 
         #region -- Values --
 
-        private StringFormat SF = new StringFormat();
+        private readonly StringFormat SF = new StringFormat();
 
         private bool MouseEntered = false;
-        // private bool MousePressedd = false;
-
-        Point ClickLocation = new Point();
+        private bool MousePressedd = false;
 
         #endregion
         public CustomButton()
@@ -62,13 +60,90 @@ namespace RV_FaceRecognition.Components.Controls
 
             Size = new Size(225, 40);
 
-            Font = new Font("Montserrat", 16F, FontStyle.Regular);
+            Font = new Font("Open Sans", 16F, FontStyle.Regular);
 
             BackColor = Color.FromArgb(69, 162, 189);
             ForeColor = Color.White;
 
             SF.Alignment = StringAlignment.Center;
             SF.LineAlignment = StringAlignment.Center;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            Graphics g = e.Graphics;
+            g.SmoothingMode = SmoothingMode.HighQuality;
+
+            g.Clear(Parent.BackColor);
+
+            Rectangle rect = new Rectangle(0, 0, Width - 1, Height - 1);
+
+            // Rounding
+            float roundValue = 0.1F;
+            if(RoundingEnable && roundingPercent > 0)
+            {
+                roundValue = Height / 100F * roundingPercent;
+            }
+            GraphicsPath rectPath = Drawer.RoundedRectangle(rect, roundValue);
+
+            // Draw rectangle
+            g.DrawPath(new Pen(BackColor), rectPath);
+            g.FillPath(new SolidBrush(BackColor), rectPath);
+
+            g.SetClip(rectPath);
+
+            if (MouseEntered)
+            {
+                g.DrawRectangle(new Pen(Color.FromArgb(30, Color.White)), rect);
+                g.FillRectangle(new SolidBrush(Color.FromArgb(30, Color.White)), rect);
+            }
+            if (MousePressedd)
+            {
+                g.DrawRectangle(new Pen(Color.FromArgb(15, Color.White)), rect);
+                g.FillRectangle(new SolidBrush(Color.FromArgb(15, Color.White)), rect);
+            }
+
+            g.DrawString(Text, Font, new SolidBrush(ForeColor), rect, SF);
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+
+            MouseEntered = true;
+
+            Invalidate();
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+
+            MouseEntered = false;
+
+            Invalidate();
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+
+            MousePressedd = true;
+         
+            Invalidate();
+
+            Focus();
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+
+            MousePressedd = false;
+
+            Invalidate();
         }
     }
 }
