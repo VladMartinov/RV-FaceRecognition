@@ -35,21 +35,29 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInfo));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ColumnFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDateCreate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnDateUpdate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTrain = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rv_facerecognitionDataSet = new RV_FaceRecognition.rv_facerecognitionDataSet();
+            this.rvfacerecognitionDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewImagesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.view_ImagesTableAdapter = new RV_FaceRecognition.rv_facerecognitionDataSetTableAdapters.View_ImagesTableAdapter();
+            this.iMAGEFILEDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.iMAGENAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dATECREATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dATEUPDATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.customButtonAdd = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.customButtonUpd = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.customButtonDel = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.rvFormStyle1 = new RV_FaceRecognition.Components.RVFormStyle(this.components);
             this.roundingButtonsComponent1 = new RV_FaceRecognition.Components.RoundingButtonsComponent(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rv_facerecognitionDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rvfacerecognitionDataSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewImagesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
@@ -62,11 +70,12 @@
             this.dataGridView1.ColumnHeadersHeight = 30;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnFileName,
-            this.ColumnFullName,
-            this.ColumnDateCreate,
-            this.ColumnDateUpdate,
-            this.ColumnTrain});
+            this.iMAGEFILEDataGridViewImageColumn,
+            this.iMAGENAMEDataGridViewTextBoxColumn,
+            this.dATECREATEDataGridViewTextBoxColumn,
+            this.dATEUPDATEDataGridViewTextBoxColumn,
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn});
+            this.dataGridView1.DataSource = this.viewImagesBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -95,35 +104,62 @@
             this.dataGridView1.Size = new System.Drawing.Size(774, 389);
             this.dataGridView1.TabIndex = 3;
             // 
-            // ColumnFileName
+            // rv_facerecognitionDataSet
             // 
-            this.ColumnFileName.HeaderText = "Наименование файла";
-            this.ColumnFileName.Name = "ColumnFileName";
-            this.ColumnFileName.Width = 146;
+            this.rv_facerecognitionDataSet.DataSetName = "rv_facerecognitionDataSet";
+            this.rv_facerecognitionDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // ColumnFullName
+            // rvfacerecognitionDataSetBindingSource
             // 
-            this.ColumnFullName.HeaderText = "ФИО";
-            this.ColumnFullName.Name = "ColumnFullName";
-            this.ColumnFullName.Width = 146;
+            this.rvfacerecognitionDataSetBindingSource.DataSource = this.rv_facerecognitionDataSet;
+            this.rvfacerecognitionDataSetBindingSource.Position = 0;
             // 
-            // ColumnDateCreate
+            // viewImagesBindingSource
             // 
-            this.ColumnDateCreate.HeaderText = "Дата создания";
-            this.ColumnDateCreate.Name = "ColumnDateCreate";
-            this.ColumnDateCreate.Width = 146;
+            this.viewImagesBindingSource.DataMember = "View_Images";
+            this.viewImagesBindingSource.DataSource = this.rvfacerecognitionDataSetBindingSource;
             // 
-            // ColumnDateUpdate
+            // view_ImagesTableAdapter
             // 
-            this.ColumnDateUpdate.HeaderText = "Дата обновления";
-            this.ColumnDateUpdate.Name = "ColumnDateUpdate";
-            this.ColumnDateUpdate.Width = 146;
+            this.view_ImagesTableAdapter.ClearBeforeFill = true;
             // 
-            // ColumnTrain
+            // iMAGEFILEDataGridViewImageColumn
             // 
-            this.ColumnTrain.HeaderText = "Обучение";
-            this.ColumnTrain.Name = "ColumnTrain";
-            this.ColumnTrain.Width = 146;
+            this.iMAGEFILEDataGridViewImageColumn.DataPropertyName = "IMAGE_FILE";
+            this.iMAGEFILEDataGridViewImageColumn.HeaderText = "Наименование файла";
+            this.iMAGEFILEDataGridViewImageColumn.Name = "iMAGEFILEDataGridViewImageColumn";
+            this.iMAGEFILEDataGridViewImageColumn.Width = 185;
+            // 
+            // iMAGENAMEDataGridViewTextBoxColumn
+            // 
+            this.iMAGENAMEDataGridViewTextBoxColumn.DataPropertyName = "IMAGE_NAME";
+            this.iMAGENAMEDataGridViewTextBoxColumn.HeaderText = "ФИО";
+            this.iMAGENAMEDataGridViewTextBoxColumn.Name = "iMAGENAMEDataGridViewTextBoxColumn";
+            this.iMAGENAMEDataGridViewTextBoxColumn.Width = 185;
+            // 
+            // dATECREATEDataGridViewTextBoxColumn
+            // 
+            this.dATECREATEDataGridViewTextBoxColumn.DataPropertyName = "DATE_CREATE";
+            this.dATECREATEDataGridViewTextBoxColumn.HeaderText = "Дата создания";
+            this.dATECREATEDataGridViewTextBoxColumn.Name = "dATECREATEDataGridViewTextBoxColumn";
+            this.dATECREATEDataGridViewTextBoxColumn.Width = 146;
+            // 
+            // dATEUPDATEDataGridViewTextBoxColumn
+            // 
+            this.dATEUPDATEDataGridViewTextBoxColumn.DataPropertyName = "DATE_UPDATE";
+            this.dATEUPDATEDataGridViewTextBoxColumn.HeaderText = "Дата обновления";
+            this.dATEUPDATEDataGridViewTextBoxColumn.Name = "dATEUPDATEDataGridViewTextBoxColumn";
+            this.dATEUPDATEDataGridViewTextBoxColumn.Width = 146;
+            // 
+            // lEARNINGSTATUSDataGridViewCheckBoxColumn
+            // 
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.DataPropertyName = "LEARNING_STATUS";
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.FalseValue = "Не обучено";
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.HeaderText = "Обучение";
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.Name = "lEARNINGSTATUSDataGridViewCheckBoxColumn";
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.TrueValue = "Обучено";
+            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.Width = 68;
             // 
             // customButtonAdd
             // 
@@ -137,6 +173,7 @@
             this.customButtonAdd.Size = new System.Drawing.Size(100, 25);
             this.customButtonAdd.TabIndex = 2;
             this.customButtonAdd.Text = "Добавить";
+            this.customButtonAdd.Click += new System.EventHandler(this.customButtonAdd_Click);
             // 
             // customButtonUpd
             // 
@@ -150,6 +187,7 @@
             this.customButtonUpd.Size = new System.Drawing.Size(100, 25);
             this.customButtonUpd.TabIndex = 1;
             this.customButtonUpd.Text = "Обновить";
+            this.customButtonUpd.Click += new System.EventHandler(this.customButtonUpd_Click);
             // 
             // customButtonDel
             // 
@@ -190,7 +228,11 @@
             this.MinimumSize = new System.Drawing.Size(815, 490);
             this.Name = "FormInfo";
             this.Text = "RV Face Recognition";
+            this.Load += new System.EventHandler(this.FormInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rv_facerecognitionDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rvfacerecognitionDataSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.viewImagesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,10 +245,14 @@
         private Components.Controls.CustomButton customButtonDel;
         private Components.RoundingButtonsComponent roundingButtonsComponent1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFileName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateCreate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnDateUpdate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTrain;
+        private System.Windows.Forms.BindingSource rvfacerecognitionDataSetBindingSource;
+        private rv_facerecognitionDataSet rv_facerecognitionDataSet;
+        private System.Windows.Forms.BindingSource viewImagesBindingSource;
+        private rv_facerecognitionDataSetTableAdapters.View_ImagesTableAdapter view_ImagesTableAdapter;
+        private System.Windows.Forms.DataGridViewImageColumn iMAGEFILEDataGridViewImageColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iMAGENAMEDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dATECREATEDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dATEUPDATEDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn lEARNINGSTATUSDataGridViewCheckBoxColumn;
     }
 }

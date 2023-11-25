@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.labelActions = new System.Windows.Forms.Label();
             this.roundedTableLayoutPanel = new RV_FaceRecognition.Components.Controls.RoundedTableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelRole = new System.Windows.Forms.Label();
             this.labelLogin = new System.Windows.Forms.Label();
             this.customButtonAuth = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.customButtonRecognize = new RV_FaceRecognition.Components.Controls.CustomButton();
@@ -64,7 +64,7 @@
             this.roundedTableLayoutPanel.ColumnCount = 2;
             this.roundedTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.roundedTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.roundedTableLayoutPanel.Controls.Add(this.label1, 1, 0);
+            this.roundedTableLayoutPanel.Controls.Add(this.labelRole, 1, 0);
             this.roundedTableLayoutPanel.Controls.Add(this.labelLogin, 0, 0);
             this.roundedTableLayoutPanel.ForeColor = System.Drawing.Color.Black;
             this.roundedTableLayoutPanel.Location = new System.Drawing.Point(554, 385);
@@ -77,20 +77,20 @@
             this.roundedTableLayoutPanel.Size = new System.Drawing.Size(225, 20);
             this.roundedTableLayoutPanel.TabIndex = 8;
             // 
-            // label1
+            // labelRole
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelRole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(115, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "ID: ~";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelRole.AutoSize = true;
+            this.labelRole.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRole.ForeColor = System.Drawing.Color.White;
+            this.labelRole.Location = new System.Drawing.Point(115, 0);
+            this.labelRole.Name = "labelRole";
+            this.labelRole.Size = new System.Drawing.Size(107, 20);
+            this.labelRole.TabIndex = 1;
+            this.labelRole.Text = "Роль: ~";
+            this.labelRole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelLogin
             // 
@@ -252,7 +252,7 @@
         private Components.Controls.CustomButton customButtonDetect;
         private Components.Controls.CustomButton customButtonAuth;
         private Components.Controls.RoundedTableLayoutPanel roundedTableLayoutPanel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelRole;
         private System.Windows.Forms.Label labelLogin;
     }
 }

@@ -23,6 +23,12 @@ namespace RV_FaceRecognition
         {
             FormLogin formLogin = new FormLogin();
             formLogin.ShowDialog();
+
+            if (formLogin.DialogResult == DialogResult.OK)
+            {
+                labelLogin.Text = formLogin.login;
+                labelRole.Text = formLogin.role;
+            }
         }
 
         private void CustomButtonInfoWindow_Click(object sender, EventArgs e)

@@ -63,6 +63,7 @@
             this.customCheckBoxAdmin.IsChecked = false;
             this.customCheckBoxAdmin.Location = new System.Drawing.Point(217, 346);
             this.customCheckBoxAdmin.Name = "customCheckBoxAdmin";
+            this.customCheckBoxAdmin.OnceActive = true;
             this.customCheckBoxAdmin.Size = new System.Drawing.Size(110, 20);
             this.customCheckBoxAdmin.TabIndex = 11;
             this.customCheckBoxAdmin.Text = "customCheckBox2";
@@ -81,6 +82,7 @@
             this.customCheckBoxDeffault.IsChecked = true;
             this.customCheckBoxDeffault.Location = new System.Drawing.Point(72, 346);
             this.customCheckBoxDeffault.Name = "customCheckBoxDeffault";
+            this.customCheckBoxDeffault.OnceActive = true;
             this.customCheckBoxDeffault.Size = new System.Drawing.Size(110, 20);
             this.customCheckBoxDeffault.TabIndex = 10;
             this.customCheckBoxDeffault.Text = "customCheckBox1";
@@ -98,6 +100,7 @@
             this.customButtonRegister.Size = new System.Drawing.Size(225, 40);
             this.customButtonRegister.TabIndex = 9;
             this.customButtonRegister.Text = "Register";
+            this.customButtonRegister.Click += new System.EventHandler(this.CustomButtonRegister_Click);
             // 
             // customTextBoxPassword
             // 
@@ -155,13 +158,12 @@
         }
 
         #endregion
-
-        private Components.RVFormStyle rvFormStyle1;
         private Components.Controls.CustomButton customButtonRegister;
         private Components.Controls.CustomTextBox customTextBoxPassword;
         private Components.Controls.CustomTextBox customTextBoxLogin;
         private System.Windows.Forms.PictureBox pictureBox1;
         private Components.Controls.CustomCheckBox customCheckBoxDeffault;
         private Components.Controls.CustomCheckBox customCheckBoxAdmin;
+        private Components.RVFormStyle rvFormStyle1;
     }
 }
