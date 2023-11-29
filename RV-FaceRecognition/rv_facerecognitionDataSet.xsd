@@ -345,10 +345,10 @@ SELECT USER_LOGIN, USER_PASSWORD, ROLE_ID FROM USERS WHERE (USER_LOGIN = @USER_L
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="View_ImagesTableAdapter" GeneratorDataComponentClassName="View_ImagesTableAdapter" Name="View_Images" UserDataComponentName="View_ImagesTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="rv_facerecognitionConnectionString (Settings)" DbObjectName="rv_facerecognition.dbo.View_Images" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="rv_facerecognitionConnectionString (Settings)" DbObjectName="rv_facerecognition.dbo.View_Images" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT IMAGE_FILE, IMAGE_NAME, DATE_CREATE, DATE_UPDATE, LEARNING_STATUS FROM dbo.View_Images</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT IMAGE_ID, IMAGE_FILE, IMAGE_NAME, DATE_CREATE, DATE_UPDATE, LEARNING_STATUS FROM dbo.View_Images</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -360,6 +360,7 @@ SELECT USER_LOGIN, USER_PASSWORD, ROLE_ID FROM USERS WHERE (USER_LOGIN = @USER_L
               <Mapping SourceColumn="DATE_CREATE" DataSetColumn="DATE_CREATE" />
               <Mapping SourceColumn="DATE_UPDATE" DataSetColumn="DATE_UPDATE" />
               <Mapping SourceColumn="LEARNING_STATUS" DataSetColumn="LEARNING_STATUS" />
+              <Mapping SourceColumn="IMAGE_ID" DataSetColumn="IMAGE_ID" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -368,14 +369,14 @@ SELECT USER_LOGIN, USER_PASSWORD, ROLE_ID FROM USERS WHERE (USER_LOGIN = @USER_L
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="rv_facerecognitionDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="rv_facerecognitionDataSet" msprop:Generator_DataSetName="rv_facerecognitionDataSet">
+  <xs:element name="rv_facerecognitionDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="rv_facerecognitionDataSet" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="rv_facerecognitionDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="ACTIONS" msprop:Generator_RowEvHandlerName="ACTIONSRowChangeEventHandler" msprop:Generator_RowDeletedName="ACTIONSRowDeleted" msprop:Generator_RowDeletingName="ACTIONSRowDeleting" msprop:Generator_RowEvArgName="ACTIONSRowChangeEvent" msprop:Generator_TablePropName="ACTIONS" msprop:Generator_RowChangedName="ACTIONSRowChanged" msprop:Generator_RowChangingName="ACTIONSRowChanging" msprop:Generator_TableClassName="ACTIONSDataTable" msprop:Generator_RowClassName="ACTIONSRow" msprop:Generator_TableVarName="tableACTIONS" msprop:Generator_UserTableName="ACTIONS">
+        <xs:element name="ACTIONS" msprop:Generator_RowClassName="ACTIONSRow" msprop:Generator_RowEvHandlerName="ACTIONSRowChangeEventHandler" msprop:Generator_RowDeletedName="ACTIONSRowDeleted" msprop:Generator_RowDeletingName="ACTIONSRowDeleting" msprop:Generator_RowEvArgName="ACTIONSRowChangeEvent" msprop:Generator_TablePropName="ACTIONS" msprop:Generator_RowChangedName="ACTIONSRowChanged" msprop:Generator_UserTableName="ACTIONS" msprop:Generator_RowChangingName="ACTIONSRowChanging" msprop:Generator_TableClassName="ACTIONSDataTable" msprop:Generator_TableVarName="tableACTIONS">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ACTION_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ACTION_ID" msprop:Generator_ColumnPropNameInTable="ACTION_IDColumn" msprop:Generator_ColumnVarNameInTable="columnACTION_ID" msprop:Generator_UserColumnName="ACTION_ID" type="xs:short" />
-              <xs:element name="ACTION_NAME" msprop:Generator_ColumnPropNameInRow="ACTION_NAME" msprop:Generator_ColumnPropNameInTable="ACTION_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnACTION_NAME" msprop:Generator_UserColumnName="ACTION_NAME">
+              <xs:element name="ACTION_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ACTION_ID" msprop:Generator_ColumnPropNameInTable="ACTION_IDColumn" msprop:Generator_ColumnPropNameInRow="ACTION_ID" msprop:Generator_ColumnVarNameInTable="columnACTION_ID" type="xs:short" />
+              <xs:element name="ACTION_NAME" msprop:Generator_UserColumnName="ACTION_NAME" msprop:Generator_ColumnPropNameInTable="ACTION_NAMEColumn" msprop:Generator_ColumnPropNameInRow="ACTION_NAME" msprop:Generator_ColumnVarNameInTable="columnACTION_NAME">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
@@ -385,59 +386,59 @@ SELECT USER_LOGIN, USER_PASSWORD, ROLE_ID FROM USERS WHERE (USER_LOGIN = @USER_L
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="IMAGES" msprop:Generator_RowEvHandlerName="IMAGESRowChangeEventHandler" msprop:Generator_RowDeletedName="IMAGESRowDeleted" msprop:Generator_RowDeletingName="IMAGESRowDeleting" msprop:Generator_RowEvArgName="IMAGESRowChangeEvent" msprop:Generator_TablePropName="IMAGES" msprop:Generator_RowChangedName="IMAGESRowChanged" msprop:Generator_RowChangingName="IMAGESRowChanging" msprop:Generator_TableClassName="IMAGESDataTable" msprop:Generator_RowClassName="IMAGESRow" msprop:Generator_TableVarName="tableIMAGES" msprop:Generator_UserTableName="IMAGES">
+        <xs:element name="IMAGES" msprop:Generator_RowClassName="IMAGESRow" msprop:Generator_RowEvHandlerName="IMAGESRowChangeEventHandler" msprop:Generator_RowDeletedName="IMAGESRowDeleted" msprop:Generator_RowDeletingName="IMAGESRowDeleting" msprop:Generator_RowEvArgName="IMAGESRowChangeEvent" msprop:Generator_TablePropName="IMAGES" msprop:Generator_RowChangedName="IMAGESRowChanged" msprop:Generator_UserTableName="IMAGES" msprop:Generator_RowChangingName="IMAGESRowChanging" msprop:Generator_TableClassName="IMAGESDataTable" msprop:Generator_TableVarName="tableIMAGES">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="IMAGE_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="IMAGE_ID" msprop:Generator_ColumnPropNameInTable="IMAGE_IDColumn" msprop:Generator_ColumnVarNameInTable="columnIMAGE_ID" msprop:Generator_UserColumnName="IMAGE_ID" type="xs:int" />
-              <xs:element name="USER_LOGIN" msprop:Generator_ColumnPropNameInRow="USER_LOGIN" msprop:Generator_ColumnPropNameInTable="USER_LOGINColumn" msprop:Generator_ColumnVarNameInTable="columnUSER_LOGIN" msprop:Generator_UserColumnName="USER_LOGIN">
+              <xs:element name="IMAGE_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="IMAGE_ID" msprop:Generator_ColumnPropNameInTable="IMAGE_IDColumn" msprop:Generator_ColumnPropNameInRow="IMAGE_ID" msprop:Generator_ColumnVarNameInTable="columnIMAGE_ID" type="xs:int" />
+              <xs:element name="USER_LOGIN" msprop:Generator_UserColumnName="USER_LOGIN" msprop:Generator_ColumnPropNameInTable="USER_LOGINColumn" msprop:Generator_ColumnPropNameInRow="USER_LOGIN" msprop:Generator_ColumnVarNameInTable="columnUSER_LOGIN">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="IMAGE_FILE" msprop:Generator_ColumnPropNameInRow="IMAGE_FILE" msprop:Generator_ColumnPropNameInTable="IMAGE_FILEColumn" msprop:Generator_ColumnVarNameInTable="columnIMAGE_FILE" msprop:Generator_UserColumnName="IMAGE_FILE" type="xs:base64Binary" />
-              <xs:element name="IMAGE_NAME" msprop:Generator_ColumnPropNameInRow="IMAGE_NAME" msprop:Generator_ColumnPropNameInTable="IMAGE_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnIMAGE_NAME" msprop:Generator_UserColumnName="IMAGE_NAME">
+              <xs:element name="IMAGE_FILE" msprop:Generator_UserColumnName="IMAGE_FILE" msprop:Generator_ColumnPropNameInTable="IMAGE_FILEColumn" msprop:Generator_ColumnPropNameInRow="IMAGE_FILE" msprop:Generator_ColumnVarNameInTable="columnIMAGE_FILE" type="xs:base64Binary" />
+              <xs:element name="IMAGE_NAME" msprop:Generator_UserColumnName="IMAGE_NAME" msprop:Generator_ColumnPropNameInTable="IMAGE_NAMEColumn" msprop:Generator_ColumnPropNameInRow="IMAGE_NAME" msprop:Generator_ColumnVarNameInTable="columnIMAGE_NAME">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="25" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DATE_CREATE" msprop:Generator_ColumnPropNameInRow="DATE_CREATE" msprop:Generator_ColumnPropNameInTable="DATE_CREATEColumn" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATE" msprop:Generator_UserColumnName="DATE_CREATE" type="xs:dateTime" />
-              <xs:element name="DATE_UPDATE" msprop:Generator_ColumnPropNameInRow="DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="DATE_UPDATEColumn" msprop:Generator_ColumnVarNameInTable="columnDATE_UPDATE" msprop:Generator_UserColumnName="DATE_UPDATE" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="LEARNING_STATUS" msprop:Generator_ColumnPropNameInRow="LEARNING_STATUS" msprop:Generator_ColumnPropNameInTable="LEARNING_STATUSColumn" msprop:Generator_ColumnVarNameInTable="columnLEARNING_STATUS" msprop:Generator_UserColumnName="LEARNING_STATUS" type="xs:boolean" />
+              <xs:element name="DATE_CREATE" msprop:Generator_UserColumnName="DATE_CREATE" msprop:Generator_ColumnPropNameInTable="DATE_CREATEColumn" msprop:Generator_ColumnPropNameInRow="DATE_CREATE" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATE" type="xs:dateTime" />
+              <xs:element name="DATE_UPDATE" msprop:Generator_UserColumnName="DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="DATE_UPDATEColumn" msprop:Generator_ColumnPropNameInRow="DATE_UPDATE" msprop:Generator_ColumnVarNameInTable="columnDATE_UPDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LEARNING_STATUS" msprop:Generator_UserColumnName="LEARNING_STATUS" msprop:Generator_ColumnPropNameInTable="LEARNING_STATUSColumn" msprop:Generator_ColumnPropNameInRow="LEARNING_STATUS" msprop:Generator_ColumnVarNameInTable="columnLEARNING_STATUS" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="RECORDS" msprop:Generator_RowEvHandlerName="RECORDSRowChangeEventHandler" msprop:Generator_RowDeletedName="RECORDSRowDeleted" msprop:Generator_RowDeletingName="RECORDSRowDeleting" msprop:Generator_RowEvArgName="RECORDSRowChangeEvent" msprop:Generator_TablePropName="RECORDS" msprop:Generator_RowChangedName="RECORDSRowChanged" msprop:Generator_RowChangingName="RECORDSRowChanging" msprop:Generator_TableClassName="RECORDSDataTable" msprop:Generator_RowClassName="RECORDSRow" msprop:Generator_TableVarName="tableRECORDS" msprop:Generator_UserTableName="RECORDS">
+        <xs:element name="RECORDS" msprop:Generator_RowClassName="RECORDSRow" msprop:Generator_RowEvHandlerName="RECORDSRowChangeEventHandler" msprop:Generator_RowDeletedName="RECORDSRowDeleted" msprop:Generator_RowDeletingName="RECORDSRowDeleting" msprop:Generator_RowEvArgName="RECORDSRowChangeEvent" msprop:Generator_TablePropName="RECORDS" msprop:Generator_RowChangedName="RECORDSRowChanged" msprop:Generator_UserTableName="RECORDS" msprop:Generator_RowChangingName="RECORDSRowChanging" msprop:Generator_TableClassName="RECORDSDataTable" msprop:Generator_TableVarName="tableRECORDS">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="RECORD_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="RECORD_ID" msprop:Generator_ColumnPropNameInTable="RECORD_IDColumn" msprop:Generator_ColumnVarNameInTable="columnRECORD_ID" msprop:Generator_UserColumnName="RECORD_ID" type="xs:int" />
-              <xs:element name="USER_LOGIN" msprop:Generator_ColumnPropNameInRow="USER_LOGIN" msprop:Generator_ColumnPropNameInTable="USER_LOGINColumn" msprop:Generator_ColumnVarNameInTable="columnUSER_LOGIN" msprop:Generator_UserColumnName="USER_LOGIN">
+              <xs:element name="RECORD_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="RECORD_ID" msprop:Generator_ColumnPropNameInTable="RECORD_IDColumn" msprop:Generator_ColumnPropNameInRow="RECORD_ID" msprop:Generator_ColumnVarNameInTable="columnRECORD_ID" type="xs:int" />
+              <xs:element name="USER_LOGIN" msprop:Generator_UserColumnName="USER_LOGIN" msprop:Generator_ColumnPropNameInTable="USER_LOGINColumn" msprop:Generator_ColumnPropNameInRow="USER_LOGIN" msprop:Generator_ColumnVarNameInTable="columnUSER_LOGIN">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ACTION_ID" msprop:Generator_ColumnPropNameInRow="ACTION_ID" msprop:Generator_ColumnPropNameInTable="ACTION_IDColumn" msprop:Generator_ColumnVarNameInTable="columnACTION_ID" msprop:Generator_UserColumnName="ACTION_ID" type="xs:short" />
-              <xs:element name="RECORD_DESCRIPTION" msprop:Generator_ColumnPropNameInRow="RECORD_DESCRIPTION" msprop:Generator_ColumnPropNameInTable="RECORD_DESCRIPTIONColumn" msprop:Generator_ColumnVarNameInTable="columnRECORD_DESCRIPTION" msprop:Generator_UserColumnName="RECORD_DESCRIPTION" minOccurs="0">
+              <xs:element name="ACTION_ID" msprop:Generator_UserColumnName="ACTION_ID" msprop:Generator_ColumnPropNameInTable="ACTION_IDColumn" msprop:Generator_ColumnPropNameInRow="ACTION_ID" msprop:Generator_ColumnVarNameInTable="columnACTION_ID" type="xs:short" />
+              <xs:element name="RECORD_DESCRIPTION" msprop:Generator_UserColumnName="RECORD_DESCRIPTION" msprop:Generator_ColumnPropNameInTable="RECORD_DESCRIPTIONColumn" msprop:Generator_ColumnPropNameInRow="RECORD_DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnRECORD_DESCRIPTION" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="75" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="RECORD_DATE" msprop:Generator_ColumnPropNameInRow="RECORD_DATE" msprop:Generator_ColumnPropNameInTable="RECORD_DATEColumn" msprop:Generator_ColumnVarNameInTable="columnRECORD_DATE" msprop:Generator_UserColumnName="RECORD_DATE" type="xs:dateTime" />
+              <xs:element name="RECORD_DATE" msprop:Generator_UserColumnName="RECORD_DATE" msprop:Generator_ColumnPropNameInTable="RECORD_DATEColumn" msprop:Generator_ColumnPropNameInRow="RECORD_DATE" msprop:Generator_ColumnVarNameInTable="columnRECORD_DATE" type="xs:dateTime" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ROLES" msprop:Generator_RowEvHandlerName="ROLESRowChangeEventHandler" msprop:Generator_RowDeletedName="ROLESRowDeleted" msprop:Generator_RowDeletingName="ROLESRowDeleting" msprop:Generator_RowEvArgName="ROLESRowChangeEvent" msprop:Generator_TablePropName="ROLES" msprop:Generator_RowChangedName="ROLESRowChanged" msprop:Generator_RowChangingName="ROLESRowChanging" msprop:Generator_TableClassName="ROLESDataTable" msprop:Generator_RowClassName="ROLESRow" msprop:Generator_TableVarName="tableROLES" msprop:Generator_UserTableName="ROLES">
+        <xs:element name="ROLES" msprop:Generator_RowClassName="ROLESRow" msprop:Generator_RowEvHandlerName="ROLESRowChangeEventHandler" msprop:Generator_RowDeletedName="ROLESRowDeleted" msprop:Generator_RowDeletingName="ROLESRowDeleting" msprop:Generator_RowEvArgName="ROLESRowChangeEvent" msprop:Generator_TablePropName="ROLES" msprop:Generator_RowChangedName="ROLESRowChanged" msprop:Generator_UserTableName="ROLES" msprop:Generator_RowChangingName="ROLESRowChanging" msprop:Generator_TableClassName="ROLESDataTable" msprop:Generator_TableVarName="tableROLES">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ROLE_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ROLE_ID" msprop:Generator_ColumnPropNameInTable="ROLE_IDColumn" msprop:Generator_ColumnVarNameInTable="columnROLE_ID" msprop:Generator_UserColumnName="ROLE_ID" type="xs:short" />
-              <xs:element name="ROLE_NAME" msprop:Generator_ColumnPropNameInRow="ROLE_NAME" msprop:Generator_ColumnPropNameInTable="ROLE_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnROLE_NAME" msprop:Generator_UserColumnName="ROLE_NAME">
+              <xs:element name="ROLE_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="ROLE_ID" msprop:Generator_ColumnPropNameInTable="ROLE_IDColumn" msprop:Generator_ColumnPropNameInRow="ROLE_ID" msprop:Generator_ColumnVarNameInTable="columnROLE_ID" type="xs:short" />
+              <xs:element name="ROLE_NAME" msprop:Generator_UserColumnName="ROLE_NAME" msprop:Generator_ColumnPropNameInTable="ROLE_NAMEColumn" msprop:Generator_ColumnPropNameInRow="ROLE_NAME" msprop:Generator_ColumnVarNameInTable="columnROLE_NAME">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
@@ -447,62 +448,63 @@ SELECT USER_LOGIN, USER_PASSWORD, ROLE_ID FROM USERS WHERE (USER_LOGIN = @USER_L
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TOKENS" msprop:Generator_RowEvHandlerName="TOKENSRowChangeEventHandler" msprop:Generator_RowDeletedName="TOKENSRowDeleted" msprop:Generator_RowDeletingName="TOKENSRowDeleting" msprop:Generator_RowEvArgName="TOKENSRowChangeEvent" msprop:Generator_TablePropName="TOKENS" msprop:Generator_RowChangedName="TOKENSRowChanged" msprop:Generator_RowChangingName="TOKENSRowChanging" msprop:Generator_TableClassName="TOKENSDataTable" msprop:Generator_RowClassName="TOKENSRow" msprop:Generator_TableVarName="tableTOKENS" msprop:Generator_UserTableName="TOKENS">
+        <xs:element name="TOKENS" msprop:Generator_RowClassName="TOKENSRow" msprop:Generator_RowEvHandlerName="TOKENSRowChangeEventHandler" msprop:Generator_RowDeletedName="TOKENSRowDeleted" msprop:Generator_RowDeletingName="TOKENSRowDeleting" msprop:Generator_RowEvArgName="TOKENSRowChangeEvent" msprop:Generator_TablePropName="TOKENS" msprop:Generator_RowChangedName="TOKENSRowChanged" msprop:Generator_UserTableName="TOKENS" msprop:Generator_RowChangingName="TOKENSRowChanging" msprop:Generator_TableClassName="TOKENSDataTable" msprop:Generator_TableVarName="tableTOKENS">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="TOKEN_ID" msprop:Generator_ColumnPropNameInRow="TOKEN_ID" msprop:Generator_ColumnPropNameInTable="TOKEN_IDColumn" msprop:Generator_ColumnVarNameInTable="columnTOKEN_ID" msprop:Generator_UserColumnName="TOKEN_ID">
+              <xs:element name="TOKEN_ID" msprop:Generator_UserColumnName="TOKEN_ID" msprop:Generator_ColumnPropNameInTable="TOKEN_IDColumn" msprop:Generator_ColumnPropNameInRow="TOKEN_ID" msprop:Generator_ColumnVarNameInTable="columnTOKEN_ID">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="25" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="USER_LOGIN" msprop:Generator_ColumnPropNameInRow="USER_LOGIN" msprop:Generator_ColumnPropNameInTable="USER_LOGINColumn" msprop:Generator_ColumnVarNameInTable="columnUSER_LOGIN" msprop:Generator_UserColumnName="USER_LOGIN">
+              <xs:element name="USER_LOGIN" msprop:Generator_UserColumnName="USER_LOGIN" msprop:Generator_ColumnPropNameInTable="USER_LOGINColumn" msprop:Generator_ColumnPropNameInRow="USER_LOGIN" msprop:Generator_ColumnVarNameInTable="columnUSER_LOGIN">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DATE_CREATE" msprop:Generator_ColumnPropNameInRow="DATE_CREATE" msprop:Generator_ColumnPropNameInTable="DATE_CREATEColumn" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATE" msprop:Generator_UserColumnName="DATE_CREATE" type="xs:dateTime" />
+              <xs:element name="DATE_CREATE" msprop:Generator_UserColumnName="DATE_CREATE" msprop:Generator_ColumnPropNameInTable="DATE_CREATEColumn" msprop:Generator_ColumnPropNameInRow="DATE_CREATE" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATE" type="xs:dateTime" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="USERS" msprop:Generator_RowEvHandlerName="USERSRowChangeEventHandler" msprop:Generator_RowDeletedName="USERSRowDeleted" msprop:Generator_RowDeletingName="USERSRowDeleting" msprop:Generator_RowEvArgName="USERSRowChangeEvent" msprop:Generator_TablePropName="USERS" msprop:Generator_RowChangedName="USERSRowChanged" msprop:Generator_RowChangingName="USERSRowChanging" msprop:Generator_TableClassName="USERSDataTable" msprop:Generator_RowClassName="USERSRow" msprop:Generator_TableVarName="tableUSERS" msprop:Generator_UserTableName="USERS">
+        <xs:element name="USERS" msprop:Generator_RowClassName="USERSRow" msprop:Generator_RowEvHandlerName="USERSRowChangeEventHandler" msprop:Generator_RowDeletedName="USERSRowDeleted" msprop:Generator_RowDeletingName="USERSRowDeleting" msprop:Generator_RowEvArgName="USERSRowChangeEvent" msprop:Generator_TablePropName="USERS" msprop:Generator_RowChangedName="USERSRowChanged" msprop:Generator_UserTableName="USERS" msprop:Generator_RowChangingName="USERSRowChanging" msprop:Generator_TableClassName="USERSDataTable" msprop:Generator_TableVarName="tableUSERS">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="USER_LOGIN" msprop:Generator_ColumnPropNameInRow="USER_LOGIN" msprop:Generator_ColumnPropNameInTable="USER_LOGINColumn" msprop:Generator_ColumnVarNameInTable="columnUSER_LOGIN" msprop:Generator_UserColumnName="USER_LOGIN">
+              <xs:element name="USER_LOGIN" msprop:Generator_UserColumnName="USER_LOGIN" msprop:Generator_ColumnPropNameInTable="USER_LOGINColumn" msprop:Generator_ColumnPropNameInRow="USER_LOGIN" msprop:Generator_ColumnVarNameInTable="columnUSER_LOGIN">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="USER_PASSWORD" msprop:Generator_ColumnPropNameInRow="USER_PASSWORD" msprop:Generator_ColumnPropNameInTable="USER_PASSWORDColumn" msprop:Generator_ColumnVarNameInTable="columnUSER_PASSWORD" msprop:Generator_UserColumnName="USER_PASSWORD">
+              <xs:element name="USER_PASSWORD" msprop:Generator_UserColumnName="USER_PASSWORD" msprop:Generator_ColumnPropNameInTable="USER_PASSWORDColumn" msprop:Generator_ColumnPropNameInRow="USER_PASSWORD" msprop:Generator_ColumnVarNameInTable="columnUSER_PASSWORD">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="ROLE_ID" msprop:Generator_ColumnPropNameInRow="ROLE_ID" msprop:Generator_ColumnPropNameInTable="ROLE_IDColumn" msprop:Generator_ColumnVarNameInTable="columnROLE_ID" msprop:Generator_UserColumnName="ROLE_ID" type="xs:short" />
+              <xs:element name="ROLE_ID" msprop:Generator_UserColumnName="ROLE_ID" msprop:Generator_ColumnPropNameInTable="ROLE_IDColumn" msprop:Generator_ColumnPropNameInRow="ROLE_ID" msprop:Generator_ColumnVarNameInTable="columnROLE_ID" type="xs:short" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="View_Images" msprop:Generator_RowEvHandlerName="View_ImagesRowChangeEventHandler" msprop:Generator_RowDeletedName="View_ImagesRowDeleted" msprop:Generator_RowDeletingName="View_ImagesRowDeleting" msprop:Generator_RowEvArgName="View_ImagesRowChangeEvent" msprop:Generator_TablePropName="View_Images" msprop:Generator_RowChangedName="View_ImagesRowChanged" msprop:Generator_RowChangingName="View_ImagesRowChanging" msprop:Generator_TableClassName="View_ImagesDataTable" msprop:Generator_RowClassName="View_ImagesRow" msprop:Generator_TableVarName="tableView_Images" msprop:Generator_UserTableName="View_Images">
+        <xs:element name="View_Images" msprop:Generator_RowClassName="View_ImagesRow" msprop:Generator_RowEvHandlerName="View_ImagesRowChangeEventHandler" msprop:Generator_RowDeletedName="View_ImagesRowDeleted" msprop:Generator_RowDeletingName="View_ImagesRowDeleting" msprop:Generator_RowEvArgName="View_ImagesRowChangeEvent" msprop:Generator_TablePropName="View_Images" msprop:Generator_RowChangedName="View_ImagesRowChanged" msprop:Generator_UserTableName="View_Images" msprop:Generator_RowChangingName="View_ImagesRowChanging" msprop:Generator_TableClassName="View_ImagesDataTable" msprop:Generator_TableVarName="tableView_Images">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="IMAGE_FILE" msprop:Generator_ColumnPropNameInRow="IMAGE_FILE" msprop:Generator_ColumnPropNameInTable="IMAGE_FILEColumn" msprop:Generator_ColumnVarNameInTable="columnIMAGE_FILE" msprop:Generator_UserColumnName="IMAGE_FILE" type="xs:base64Binary" />
-              <xs:element name="IMAGE_NAME" msprop:Generator_ColumnPropNameInRow="IMAGE_NAME" msprop:Generator_ColumnPropNameInTable="IMAGE_NAMEColumn" msprop:Generator_ColumnVarNameInTable="columnIMAGE_NAME" msprop:Generator_UserColumnName="IMAGE_NAME">
+              <xs:element name="IMAGE_FILE" msprop:Generator_UserColumnName="IMAGE_FILE" msprop:Generator_ColumnPropNameInTable="IMAGE_FILEColumn" msprop:Generator_ColumnPropNameInRow="IMAGE_FILE" msprop:Generator_ColumnVarNameInTable="columnIMAGE_FILE" type="xs:base64Binary" />
+              <xs:element name="IMAGE_NAME" msprop:Generator_UserColumnName="IMAGE_NAME" msprop:Generator_ColumnPropNameInTable="IMAGE_NAMEColumn" msprop:Generator_ColumnPropNameInRow="IMAGE_NAME" msprop:Generator_ColumnVarNameInTable="columnIMAGE_NAME">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="25" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DATE_CREATE" msprop:Generator_ColumnPropNameInRow="DATE_CREATE" msprop:Generator_ColumnPropNameInTable="DATE_CREATEColumn" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATE" msprop:Generator_UserColumnName="DATE_CREATE" type="xs:dateTime" />
-              <xs:element name="DATE_UPDATE" msprop:Generator_ColumnPropNameInRow="DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="DATE_UPDATEColumn" msprop:Generator_ColumnVarNameInTable="columnDATE_UPDATE" msprop:Generator_UserColumnName="DATE_UPDATE" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="LEARNING_STATUS" msprop:Generator_ColumnPropNameInRow="LEARNING_STATUS" msprop:Generator_ColumnPropNameInTable="LEARNING_STATUSColumn" msprop:Generator_ColumnVarNameInTable="columnLEARNING_STATUS" msprop:Generator_UserColumnName="LEARNING_STATUS" type="xs:boolean" />
+              <xs:element name="DATE_CREATE" msprop:Generator_UserColumnName="DATE_CREATE" msprop:Generator_ColumnPropNameInTable="DATE_CREATEColumn" msprop:Generator_ColumnPropNameInRow="DATE_CREATE" msprop:Generator_ColumnVarNameInTable="columnDATE_CREATE" type="xs:dateTime" />
+              <xs:element name="DATE_UPDATE" msprop:Generator_UserColumnName="DATE_UPDATE" msprop:Generator_ColumnPropNameInTable="DATE_UPDATEColumn" msprop:Generator_ColumnPropNameInRow="DATE_UPDATE" msprop:Generator_ColumnVarNameInTable="columnDATE_UPDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LEARNING_STATUS" msprop:Generator_UserColumnName="LEARNING_STATUS" msprop:Generator_ColumnPropNameInTable="LEARNING_STATUSColumn" msprop:Generator_ColumnPropNameInRow="LEARNING_STATUS" msprop:Generator_ColumnVarNameInTable="columnLEARNING_STATUS" type="xs:boolean" />
+              <xs:element name="IMAGE_ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="IMAGE_ID" msprop:Generator_ColumnPropNameInTable="IMAGE_IDColumn" msprop:Generator_ColumnVarNameInTable="columnIMAGE_ID" msprop:Generator_UserColumnName="IMAGE_ID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -532,14 +534,18 @@ SELECT USER_LOGIN, USER_PASSWORD, ROLE_ID FROM USERS WHERE (USER_LOGIN = @USER_L
       <xs:selector xpath=".//mstns:USERS" />
       <xs:field xpath="mstns:USER_LOGIN" />
     </xs:unique>
+    <xs:unique name="View_Images_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:View_Images" />
+      <xs:field xpath="mstns:IMAGE_ID" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK__IMAGES__USER_LOG__44FF419A" msdata:parent="USERS" msdata:child="IMAGES" msdata:parentkey="USER_LOGIN" msdata:childkey="USER_LOGIN" msprop:Generator_UserParentTable="USERS" msprop:Generator_UserChildTable="IMAGES" msprop:Generator_RelationVarName="relationFK__IMAGES__USER_LOG__44FF419A" msprop:Generator_UserRelationName="FK__IMAGES__USER_LOG__44FF419A" msprop:Generator_ChildPropName="GetIMAGESRows" msprop:Generator_ParentPropName="USERSRow" />
-      <msdata:Relationship name="FK__RECORDS__ACTION___4BAC3F29" msdata:parent="ACTIONS" msdata:child="RECORDS" msdata:parentkey="ACTION_ID" msdata:childkey="ACTION_ID" msprop:Generator_UserParentTable="ACTIONS" msprop:Generator_UserChildTable="RECORDS" msprop:Generator_RelationVarName="relationFK__RECORDS__ACTION___4BAC3F29" msprop:Generator_ChildPropName="GetRECORDSRows" msprop:Generator_ParentPropName="ACTIONSRow" msprop:Generator_UserRelationName="FK__RECORDS__ACTION___4BAC3F29" />
-      <msdata:Relationship name="FK__RECORDS__USER_LO__4AB81AF0" msdata:parent="USERS" msdata:child="RECORDS" msdata:parentkey="USER_LOGIN" msdata:childkey="USER_LOGIN" msprop:Generator_UserParentTable="USERS" msprop:Generator_UserChildTable="RECORDS" msprop:Generator_RelationVarName="relationFK__RECORDS__USER_LO__4AB81AF0" msprop:Generator_UserRelationName="FK__RECORDS__USER_LO__4AB81AF0" msprop:Generator_ChildPropName="GetRECORDSRows" msprop:Generator_ParentPropName="USERSRow" />
-      <msdata:Relationship name="FK__TOKENS__USER_LOG__403A8C7D" msdata:parent="USERS" msdata:child="TOKENS" msdata:parentkey="USER_LOGIN" msdata:childkey="USER_LOGIN" msprop:Generator_UserParentTable="USERS" msprop:Generator_UserChildTable="TOKENS" msprop:Generator_RelationVarName="relationFK__TOKENS__USER_LOG__403A8C7D" msprop:Generator_UserRelationName="FK__TOKENS__USER_LOG__403A8C7D" msprop:Generator_ChildPropName="GetTOKENSRows" msprop:Generator_ParentPropName="USERSRow" />
-      <msdata:Relationship name="FK__USERS__ROLE_ID__3D5E1FD2" msdata:parent="ROLES" msdata:child="USERS" msdata:parentkey="ROLE_ID" msdata:childkey="ROLE_ID" msprop:Generator_UserParentTable="ROLES" msprop:Generator_UserChildTable="USERS" msprop:Generator_RelationVarName="relationFK__USERS__ROLE_ID__3D5E1FD2" msprop:Generator_ChildPropName="GetUSERSRows" msprop:Generator_ParentPropName="ROLESRow" msprop:Generator_UserRelationName="FK__USERS__ROLE_ID__3D5E1FD2" />
+      <msdata:Relationship name="FK__IMAGES__USER_LOG__44FF419A" msdata:parent="USERS" msdata:child="IMAGES" msdata:parentkey="USER_LOGIN" msdata:childkey="USER_LOGIN" msprop:Generator_UserParentTable="USERS" msprop:Generator_UserChildTable="IMAGES" msprop:Generator_RelationVarName="relationFK__IMAGES__USER_LOG__44FF419A" msprop:Generator_ChildPropName="GetIMAGESRows" msprop:Generator_ParentPropName="USERSRow" msprop:Generator_UserRelationName="FK__IMAGES__USER_LOG__44FF419A" />
+      <msdata:Relationship name="FK__RECORDS__ACTION___4BAC3F29" msdata:parent="ACTIONS" msdata:child="RECORDS" msdata:parentkey="ACTION_ID" msdata:childkey="ACTION_ID" msprop:Generator_UserParentTable="ACTIONS" msprop:Generator_UserChildTable="RECORDS" msprop:Generator_RelationVarName="relationFK__RECORDS__ACTION___4BAC3F29" msprop:Generator_ChildPropName="GetRECORDSRows" msprop:Generator_UserRelationName="FK__RECORDS__ACTION___4BAC3F29" msprop:Generator_ParentPropName="ACTIONSRow" />
+      <msdata:Relationship name="FK__RECORDS__USER_LO__4AB81AF0" msdata:parent="USERS" msdata:child="RECORDS" msdata:parentkey="USER_LOGIN" msdata:childkey="USER_LOGIN" msprop:Generator_UserParentTable="USERS" msprop:Generator_UserChildTable="RECORDS" msprop:Generator_RelationVarName="relationFK__RECORDS__USER_LO__4AB81AF0" msprop:Generator_ChildPropName="GetRECORDSRows" msprop:Generator_ParentPropName="USERSRow" msprop:Generator_UserRelationName="FK__RECORDS__USER_LO__4AB81AF0" />
+      <msdata:Relationship name="FK__TOKENS__USER_LOG__403A8C7D" msdata:parent="USERS" msdata:child="TOKENS" msdata:parentkey="USER_LOGIN" msdata:childkey="USER_LOGIN" msprop:Generator_UserParentTable="USERS" msprop:Generator_UserChildTable="TOKENS" msprop:Generator_RelationVarName="relationFK__TOKENS__USER_LOG__403A8C7D" msprop:Generator_ChildPropName="GetTOKENSRows" msprop:Generator_ParentPropName="USERSRow" msprop:Generator_UserRelationName="FK__TOKENS__USER_LOG__403A8C7D" />
+      <msdata:Relationship name="FK__USERS__ROLE_ID__3D5E1FD2" msdata:parent="ROLES" msdata:child="USERS" msdata:parentkey="ROLE_ID" msdata:childkey="ROLE_ID" msprop:Generator_UserParentTable="ROLES" msprop:Generator_UserChildTable="USERS" msprop:Generator_RelationVarName="relationFK__USERS__ROLE_ID__3D5E1FD2" msprop:Generator_ChildPropName="GetUSERSRows" msprop:Generator_UserRelationName="FK__USERS__ROLE_ID__3D5E1FD2" msprop:Generator_ParentPropName="ROLESRow" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

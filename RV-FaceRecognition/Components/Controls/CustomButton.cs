@@ -94,6 +94,12 @@ namespace RV_FaceRecognition.Components.Controls
 
             g.SetClip(rectPath);
 
+            if (!this.Enabled)
+            {
+                g.DrawRectangle(new Pen(Color.FromArgb(100, Color.Gray)), rect);
+                g.FillRectangle(new SolidBrush(Color.FromArgb(100, Color.Gray)), rect);
+            }
+
             if (MouseEntered)
             {
                 g.DrawRectangle(new Pen(Color.FromArgb(30, Color.White)), rect);

@@ -2361,6 +2361,8 @@ namespace RV_FaceRecognition {
             
             private global::System.Data.DataColumn columnLEARNING_STATUS;
             
+            private global::System.Data.DataColumn columnIMAGE_ID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public View_ImagesDataTable() {
@@ -2436,6 +2438,14 @@ namespace RV_FaceRecognition {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IMAGE_IDColumn {
+                get {
+                    return this.columnIMAGE_ID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2478,10 +2488,18 @@ namespace RV_FaceRecognition {
                         IMAGE_NAME,
                         DATE_CREATE,
                         DATE_UPDATE,
-                        LEARNING_STATUS};
+                        LEARNING_STATUS,
+                        null};
                 rowView_ImagesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowView_ImagesRow);
                 return rowView_ImagesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public View_ImagesRow FindByIMAGE_ID(int IMAGE_ID) {
+                return ((View_ImagesRow)(this.Rows.Find(new object[] {
+                            IMAGE_ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2506,6 +2524,7 @@ namespace RV_FaceRecognition {
                 this.columnDATE_CREATE = base.Columns["DATE_CREATE"];
                 this.columnDATE_UPDATE = base.Columns["DATE_UPDATE"];
                 this.columnLEARNING_STATUS = base.Columns["LEARNING_STATUS"];
+                this.columnIMAGE_ID = base.Columns["IMAGE_ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2521,11 +2540,21 @@ namespace RV_FaceRecognition {
                 base.Columns.Add(this.columnDATE_UPDATE);
                 this.columnLEARNING_STATUS = new global::System.Data.DataColumn("LEARNING_STATUS", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLEARNING_STATUS);
+                this.columnIMAGE_ID = new global::System.Data.DataColumn("IMAGE_ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIMAGE_ID);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnIMAGE_ID}, true));
                 this.columnIMAGE_FILE.AllowDBNull = false;
                 this.columnIMAGE_NAME.AllowDBNull = false;
                 this.columnIMAGE_NAME.MaxLength = 25;
                 this.columnDATE_CREATE.AllowDBNull = false;
                 this.columnLEARNING_STATUS.AllowDBNull = false;
+                this.columnIMAGE_ID.AutoIncrement = true;
+                this.columnIMAGE_ID.AutoIncrementSeed = -1;
+                this.columnIMAGE_ID.AutoIncrementStep = -1;
+                this.columnIMAGE_ID.AllowDBNull = false;
+                this.columnIMAGE_ID.ReadOnly = true;
+                this.columnIMAGE_ID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3199,6 +3228,17 @@ namespace RV_FaceRecognition {
                 }
                 set {
                     this[this.tableView_Images.LEARNING_STATUSColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int IMAGE_ID {
+                get {
+                    return ((int)(this[this.tableView_Images.IMAGE_IDColumn]));
+                }
+                set {
+                    this[this.tableView_Images.IMAGE_IDColumn] = value;
                 }
             }
             
@@ -5701,6 +5741,7 @@ SELECT USER_LOGIN, USER_PASSWORD, ROLE_ID FROM USERS WHERE (USER_LOGIN = @USER_L
             tableMapping.ColumnMappings.Add("DATE_CREATE", "DATE_CREATE");
             tableMapping.ColumnMappings.Add("DATE_UPDATE", "DATE_UPDATE");
             tableMapping.ColumnMappings.Add("LEARNING_STATUS", "LEARNING_STATUS");
+            tableMapping.ColumnMappings.Add("IMAGE_ID", "IMAGE_ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5717,8 +5758,8 @@ SELECT USER_LOGIN, USER_PASSWORD, ROLE_ID FROM USERS WHERE (USER_LOGIN = @USER_L
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT IMAGE_FILE, IMAGE_NAME, DATE_CREATE, DATE_UPDATE, LEARNING_STATUS FROM dbo" +
-                ".View_Images";
+            this._commandCollection[0].CommandText = "SELECT IMAGE_ID, IMAGE_FILE, IMAGE_NAME, DATE_CREATE, DATE_UPDATE, LEARNING_STATU" +
+                "S FROM dbo.View_Images";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

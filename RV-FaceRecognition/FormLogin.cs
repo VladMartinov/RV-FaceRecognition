@@ -13,7 +13,8 @@ namespace RV_FaceRecognition
         private string loginValue;
         private string passwordValue;
         private string roleValue;
-        private string validationPattern = "[^a-zA-Z0-9!@#]";
+        private int roleIdValue;
+        private readonly string validationPattern = "[^a-zA-Z0-9!@#]";
 
         public string login
         {
@@ -26,6 +27,10 @@ namespace RV_FaceRecognition
         public string role
         {
             get => roleValue;
+        }
+        public int roleId
+        {
+            get => roleIdValue;
         }
         #endregion
 
@@ -115,7 +120,6 @@ namespace RV_FaceRecognition
             string currentPassword = PasswordEncryption.HashedPassword(customTextBoxPassword.Text);
 
             bool result;
-            int roleId = 0;
 
             using (var conn = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString))
             using (var cmd = new SqlCommand("USER_AUTHORIZATION", conn) { CommandType = CommandType.StoredProcedure })
@@ -143,7 +147,7 @@ namespace RV_FaceRecognition
                 {
                     this.loginValue = currentLogin;
                     this.passwordValue = customTextBoxPassword.Text;
-                    roleId = Convert.ToInt16(sqlParameterSecond.Value);
+                    this.roleIdValue = Convert.ToInt16(sqlParameterSecond.Value);
                 }
             };
 
@@ -152,7 +156,7 @@ namespace RV_FaceRecognition
                 using (var conn = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString))
                 using (var cmd = new SqlCommand("SELECT ROLE_NAME FROM ROLES WHERE ROLE_ID = @ID;", conn))
                 {
-                    cmd.Parameters.Add(new SqlParameter("@ID", roleId));
+                    cmd.Parameters.Add(new SqlParameter("@ID", this.roleIdValue));
 
                     conn.Open();
                     SqlDataReader reader = cmd.ExecuteReader();

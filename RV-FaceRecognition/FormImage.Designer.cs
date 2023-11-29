@@ -38,14 +38,17 @@
             this.customTextBoxFullName = new RV_FaceRecognition.Components.Controls.CustomTextBox();
             this.customButtonSelectFile = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.rvFormStyle1 = new RV_FaceRecognition.Components.RVFormStyle(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelFileName
             // 
+            this.labelFileName.AutoEllipsis = true;
             this.labelFileName.AutoSize = true;
             this.labelFileName.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelFileName.ForeColor = System.Drawing.Color.White;
             this.labelFileName.Location = new System.Drawing.Point(20, 30);
+            this.labelFileName.MaximumSize = new System.Drawing.Size(271, 15);
             this.labelFileName.Name = "labelFileName";
             this.labelFileName.Size = new System.Drawing.Size(116, 15);
             this.labelFileName.TabIndex = 0;
@@ -88,6 +91,7 @@
             this.customButtonOK.Size = new System.Drawing.Size(100, 25);
             this.customButtonOK.TabIndex = 5;
             this.customButtonOK.Text = "ОК";
+            this.customButtonOK.Click += new System.EventHandler(this.customButtonOK_Click);
             // 
             // customCheckBox1
             // 
@@ -132,11 +136,25 @@
             this.customButtonSelectFile.Size = new System.Drawing.Size(271, 25);
             this.customButtonSelectFile.TabIndex = 1;
             this.customButtonSelectFile.Text = "Выбрать файл";
+            this.customButtonSelectFile.Click += new System.EventHandler(this.customButtonSelectFile_Click);
             // 
             // rvFormStyle1
             // 
             this.rvFormStyle1.Form = this;
             this.rvFormStyle1.FormStyle = RV_FaceRecognition.Components.RVFormStyle.fStyle.UserStyle;
+            // 
+            // label1
+            // 
+            this.label1.AutoEllipsis = true;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(20, 80);
+            this.label1.MaximumSize = new System.Drawing.Size(271, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(226, 15);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "(Максимальный размер файла = 0.75 МБ)";
             // 
             // FormImage
             // 
@@ -144,6 +162,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
             this.ClientSize = new System.Drawing.Size(295, 293);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.customButtonCancel);
             this.Controls.Add(this.customButtonOK);
             this.Controls.Add(this.customCheckBox1);
@@ -171,5 +190,6 @@
         private Components.Controls.CustomCheckBox customCheckBox1;
         private Components.Controls.CustomButton customButtonCancel;
         private Components.Controls.CustomButton customButtonOK;
+        private System.Windows.Forms.Label label1;
     }
 }
