@@ -1,25 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Face;
 using Emgu.CV.Structure;
-using RV_FaceRecognition.Components;
-using RV_FaceRecognition.Components.Controls;
 using RV_FaceRecognition.Components.Methods;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace RV_FaceRecognition
 {
