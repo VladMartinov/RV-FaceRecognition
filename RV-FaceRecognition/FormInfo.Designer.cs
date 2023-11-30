@@ -49,7 +49,6 @@
             this.iMAGENAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dATECREATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dATEUPDATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewImagesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rvfacerecognitionDataSetBindingSource)).BeginInit();
@@ -77,8 +76,7 @@
             this.iMAGEFILEDataGridViewImageColumn,
             this.iMAGENAMEDataGridViewTextBoxColumn,
             this.dATECREATEDataGridViewTextBoxColumn,
-            this.dATEUPDATEDataGridViewTextBoxColumn,
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn});
+            this.dATEUPDATEDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.viewImagesBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
@@ -193,7 +191,7 @@
             // iMAGEFILEDataGridViewImageColumn
             // 
             this.iMAGEFILEDataGridViewImageColumn.DataPropertyName = "IMAGE_FILE";
-            this.iMAGEFILEDataGridViewImageColumn.HeaderText = "Наименование файла";
+            this.iMAGEFILEDataGridViewImageColumn.HeaderText = "Изображение";
             this.iMAGEFILEDataGridViewImageColumn.Name = "iMAGEFILEDataGridViewImageColumn";
             this.iMAGEFILEDataGridViewImageColumn.ReadOnly = true;
             this.iMAGEFILEDataGridViewImageColumn.Width = 200;
@@ -204,7 +202,7 @@
             this.iMAGENAMEDataGridViewTextBoxColumn.HeaderText = "ФИО";
             this.iMAGENAMEDataGridViewTextBoxColumn.Name = "iMAGENAMEDataGridViewTextBoxColumn";
             this.iMAGENAMEDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iMAGENAMEDataGridViewTextBoxColumn.Width = 185;
+            this.iMAGENAMEDataGridViewTextBoxColumn.Width = 200;
             // 
             // dATECREATEDataGridViewTextBoxColumn
             // 
@@ -212,7 +210,7 @@
             this.dATECREATEDataGridViewTextBoxColumn.HeaderText = "Дата создания";
             this.dATECREATEDataGridViewTextBoxColumn.Name = "dATECREATEDataGridViewTextBoxColumn";
             this.dATECREATEDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dATECREATEDataGridViewTextBoxColumn.Width = 139;
+            this.dATECREATEDataGridViewTextBoxColumn.Width = 155;
             // 
             // dATEUPDATEDataGridViewTextBoxColumn
             // 
@@ -220,17 +218,7 @@
             this.dATEUPDATEDataGridViewTextBoxColumn.HeaderText = "Дата обновления";
             this.dATEUPDATEDataGridViewTextBoxColumn.Name = "dATEUPDATEDataGridViewTextBoxColumn";
             this.dATEUPDATEDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dATEUPDATEDataGridViewTextBoxColumn.Width = 136;
-            // 
-            // lEARNINGSTATUSDataGridViewCheckBoxColumn
-            // 
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.DataPropertyName = "LEARNING_STATUS";
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.FalseValue = "Не обучено";
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.HeaderText = "Обучение";
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.Name = "lEARNINGSTATUSDataGridViewCheckBoxColumn";
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.TrueValue = "Обучено";
-            this.lEARNINGSTATUSDataGridViewCheckBoxColumn.Width = 68;
+            this.dATEUPDATEDataGridViewTextBoxColumn.Width = 155;
             // 
             // FormInfo
             // 
@@ -273,6 +261,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn iMAGENAMEDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dATECREATEDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dATEUPDATEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn lEARNINGSTATUSDataGridViewCheckBoxColumn;
     }
 }

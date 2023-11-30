@@ -150,7 +150,7 @@ namespace RV_FaceRecognition
                         }
 
                         enableSaveImage = false;
-
+ 
                         /* Recognize the face */
                         if (isTrained)
                         {
@@ -159,7 +159,7 @@ namespace RV_FaceRecognition
                             var result = recognizer.Predict(grayFaceResult);
 
                             /* - Here results found known faces - */
-                            if (result.Label != -1 && result.Distance < 3000)
+                            if (result.Label != -1 && result.Distance < 4250)
                             {
                                 CvInvoke.PutText(currentFrame, personsNames[result.Label], new Point(face.X - 2, face.Y - 2),
                                     FontFace.HersheyComplex, 1.0, new Bgr(Color.Orange).MCvScalar);

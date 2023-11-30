@@ -35,7 +35,7 @@ namespace RV_FaceRecognition
             {
                 connection.Open();
 
-                string query = "SELECT IMAGE_FILE, IMAGE_NAME, LEARNING_STATUS FROM IMAGES WHERE IMAGE_ID = @IMAGE_ID";
+                string query = "SELECT IMAGE_FILE, IMAGE_NAME FROM IMAGES WHERE IMAGE_ID = @IMAGE_ID";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@IMAGE_ID", ImageId);
 
@@ -49,7 +49,6 @@ namespace RV_FaceRecognition
 
                 labelFileName.Text = "Выбранный файл: Изображения для " + reader.GetString(1);
                 customTextBoxFullName.Text = reader.GetString(1);
-                customCheckBox1.IsChecked = reader.GetBoolean(2);
 
                 reader.Close();
             }
@@ -99,7 +98,7 @@ namespace RV_FaceRecognition
 
         private void customButtonOK_Click(object sender, EventArgs e)
         {
-            if (imageInByte != null && customTextBoxFullName.Text.Length > 0)
+            if (imageInByte != null)
             {
                 using (var connection = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString))
                 {
@@ -107,15 +106,14 @@ namespace RV_FaceRecognition
 
                     string query;
                     if (ImageId > 0)
-                        query = "UPDATE IMAGES SET USER_LOGIN = @USER_LOGIN, IMAGE_FILE = @IMAGE_FILE, IMAGE_NAME = @IMAGE_NAME, DATE_UPDATE = @DATE_UPDATE, LEARNING_STATUS = @LEARNING_STATUS WHERE IMAGE_ID = @IMAGE_ID";
+                        query = "UPDATE IMAGES SET USER_LOGIN = @USER_LOGIN, IMAGE_FILE = @IMAGE_FILE, IMAGE_NAME = @IMAGE_NAME, DATE_UPDATE = @DATE_UPDATE WHERE IMAGE_ID = @IMAGE_ID";
                     else
-                        query = "INSERT INTO IMAGES (USER_LOGIN, IMAGE_FILE, IMAGE_NAME, LEARNING_STATUS) VALUES (@USER_LOGIN, @IMAGE_FILE, @IMAGE_NAME, @LEARNING_STATUS)";
+                        query = "INSERT INTO IMAGES (USER_LOGIN, IMAGE_FILE, IMAGE_NAME) VALUES (@USER_LOGIN, @IMAGE_FILE, @IMAGE_NAME)";
                     
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.Add(new SqlParameter("@USER_LOGIN", SqlDbType.VarChar, 20) { Value = login });
                     command.Parameters.Add(new SqlParameter("@IMAGE_FILE", SqlDbType.VarBinary) { Value = imageInByte });
                     command.Parameters.Add(new SqlParameter("@IMAGE_NAME", SqlDbType.VarChar, 25) { Value = customTextBoxFullName.Text });
-                    command.Parameters.Add(new SqlParameter("@LEARNING_STATUS", SqlDbType.Bit) { Value = customCheckBox1.IsChecked ? 1 : 0 });
 
                     if (ImageId > 0)
                     {

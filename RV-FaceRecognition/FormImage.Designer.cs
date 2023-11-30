@@ -34,7 +34,6 @@
             this.labelFullName = new System.Windows.Forms.Label();
             this.customButtonCancel = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.customButtonOK = new RV_FaceRecognition.Components.Controls.CustomButton();
-            this.customCheckBox1 = new RV_FaceRecognition.Components.Controls.CustomCheckBox();
             this.customTextBoxFullName = new RV_FaceRecognition.Components.Controls.CustomTextBox();
             this.customButtonSelectFile = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.rvFormStyle1 = new RV_FaceRecognition.Components.RVFormStyle(this.components);
@@ -59,7 +58,7 @@
             this.labelFullName.AutoSize = true;
             this.labelFullName.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelFullName.ForeColor = System.Drawing.Color.White;
-            this.labelFullName.Location = new System.Drawing.Point(20, 103);
+            this.labelFullName.Location = new System.Drawing.Point(20, 123);
             this.labelFullName.Name = "labelFullName";
             this.labelFullName.Size = new System.Drawing.Size(136, 15);
             this.labelFullName.TabIndex = 2;
@@ -93,30 +92,12 @@
             this.customButtonOK.Text = "ОК";
             this.customButtonOK.Click += new System.EventHandler(this.customButtonOK_Click);
             // 
-            // customCheckBox1
-            // 
-            this.customCheckBox1.CheckBoxBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
-            this.customCheckBox1.CheckBoxFont = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.customCheckBox1.CheckBoxFrameColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
-            this.customCheckBox1.CheckBoxFrameStrength = 1;
-            this.customCheckBox1.CheckBoxSize = 15;
-            this.customCheckBox1.CheckBoxText = "Обучено";
-            this.customCheckBox1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.customCheckBox1.ForeColor = System.Drawing.Color.White;
-            this.customCheckBox1.IsChecked = false;
-            this.customCheckBox1.Location = new System.Drawing.Point(20, 175);
-            this.customCheckBox1.Name = "customCheckBox1";
-            this.customCheckBox1.OnceActive = false;
-            this.customCheckBox1.Size = new System.Drawing.Size(112, 35);
-            this.customCheckBox1.TabIndex = 4;
-            this.customCheckBox1.Text = "Обучено";
-            // 
             // customTextBoxFullName
             // 
             this.customTextBoxFullName.Font = new System.Drawing.Font("Open Sans", 10F, System.Drawing.FontStyle.Bold);
             this.customTextBoxFullName.FontTextPreview = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.customTextBoxFullName.ForeColor = System.Drawing.Color.White;
-            this.customTextBoxFullName.Location = new System.Drawing.Point(20, 125);
+            this.customTextBoxFullName.Location = new System.Drawing.Point(20, 145);
             this.customTextBoxFullName.MaxLength = 25;
             this.customTextBoxFullName.Name = "customTextBoxFullName";
             this.customTextBoxFullName.Size = new System.Drawing.Size(271, 20);
@@ -165,7 +146,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.customButtonCancel);
             this.Controls.Add(this.customButtonOK);
-            this.Controls.Add(this.customCheckBox1);
             this.Controls.Add(this.customTextBoxFullName);
             this.Controls.Add(this.labelFullName);
             this.Controls.Add(this.customButtonSelectFile);
@@ -187,7 +167,6 @@
         private System.Windows.Forms.Label labelFileName;
         private Components.Controls.CustomTextBox customTextBoxFullName;
         private System.Windows.Forms.Label labelFullName;
-        private Components.Controls.CustomCheckBox customCheckBox1;
         private Components.Controls.CustomButton customButtonCancel;
         private Components.Controls.CustomButton customButtonOK;
         private System.Windows.Forms.Label label1;
