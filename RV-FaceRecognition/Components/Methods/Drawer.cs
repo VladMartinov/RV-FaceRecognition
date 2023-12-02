@@ -25,6 +25,8 @@ namespace RV_FaceRecognition.Components
 
             gp.AddArc(rect.X, rect.Y, RoundSize, RoundSize, 180, 90);
             gp.AddArc(rect.X + rect.Width - RoundSize, rect.Y, RoundSize, RoundSize, 270, 90);
+            
+            // Need round only top?
             if (RoundTop)
             {
                 gp.AddLine(rect.X + rect.Width, rect.Y + RoundSize, rect.X + rect.Width, rect.Y + rect.Height);

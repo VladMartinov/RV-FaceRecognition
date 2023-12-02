@@ -5,6 +5,7 @@ namespace RV_FaceRecognition.Components.Methods
 {
     public class PasswordEncryption
     {
+        // The method receives a regular password as input and returns an encrypted password
         public static string HashedPassword(string password)
         {
             MD5 md5 = MD5.Create();

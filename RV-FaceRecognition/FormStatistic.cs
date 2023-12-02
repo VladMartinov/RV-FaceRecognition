@@ -30,20 +30,20 @@ namespace RV_FaceRecognition
 
         private void FillChart1()
         {
-            // Откройте подключение к базе данных
+            // Открываем подключение к базе данных
             connection.Open();
 
-            // Создайте команду для выполнения процедуры
+            // Создаем команду для выполнения процедуры
             SqlCommand command = new SqlCommand("STATISTICS_FOR_ALL_ACTIONS", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             SqlDataReader reader = command.ExecuteReader();
 
-            // Очистите данные в Chart1
+            // Очисщаем данные в Chart1
             chart1.Series["se1"].Points.Clear();
             chart1.ChartAreas[0].BackColor = Color.Transparent;
 
-            // Прочитайте данные из результата процедуры и добавьте их в Chart1
+            // Прочитаем данные из результата процедуры и добавим их в Chart1
             while (reader.Read())
             {
                 string actionName = reader["ACTION_NAME"].ToString();
@@ -52,32 +52,32 @@ namespace RV_FaceRecognition
                 chart1.Series["se1"].Points.AddXY(actionName, count);
             }
 
-            // Закройте чтение данных
+            // Закроем чтение данных
             reader.Close();
 
-            // Закройте подключение к базе данных
+            // Закроем подключение к базе данных
             connection.Close();
         }
 
         private void FillChart2()
         {
-            // Откройте подключение к базе данных
+            // Откроем подключение к базе данных
             connection.Open();
 
-            // Создайте команду для выполнения процедуры
+            // Создаем команду для выполнения процедуры
             SqlCommand command = new SqlCommand("STATISTICS_ACTIONS_BY_USER", connection);
             command.CommandType = CommandType.StoredProcedure;
 
-            // Добавьте параметр для процедуры
+            // Добавим параметр для процедуры
             command.Parameters.AddWithValue("@USER_LOGIN", this.login);
 
             SqlDataReader reader = command.ExecuteReader();
 
-            // Очистите данные в Chart2
+            // Очистим данные в Chart2
             chart2.Series["se2"].Points.Clear();
             chart2.ChartAreas[0].BackColor = Color.Transparent;
 
-            // Прочитайте данные из результата процедуры и добавьте их в Chart2
+            // Прочитаем данные из результата процедуры и добавим их в Chart2
             while (reader.Read())
             {
                 string actionName = reader["ACTION_NAME"].ToString();
@@ -87,10 +87,10 @@ namespace RV_FaceRecognition
             }
             
 
-            // Закройте чтение данных
+            // Закроем чтение данных
             reader.Close();
 
-            // Закройте подключение к базе данных
+            // Закроем подключение к базе данных
             connection.Close();
         }
     }

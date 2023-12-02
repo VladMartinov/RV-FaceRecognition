@@ -24,6 +24,7 @@ namespace RV_FaceRecognition.Components.Methods
             this.login = login;
         }
 
+        // Method that adds an instance of an entity to the Database Records table
         public void RegisterAction (TypeActiom typeAction, string description = "")
         {
             using (var connection = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString))

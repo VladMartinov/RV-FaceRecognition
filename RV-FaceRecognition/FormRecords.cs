@@ -19,6 +19,7 @@ namespace RV_FaceRecognition
             this.view_RecordsTableAdapter.Fill(this.rv_facerecognitionDataSet.View_Records);
         }
 
+        // Открытие модалки со статистикой приложения
         private void customButtonStatistic_Click(object sender, EventArgs e)
         {
             FormStatistic formStatistic = new FormStatistic(this.login);

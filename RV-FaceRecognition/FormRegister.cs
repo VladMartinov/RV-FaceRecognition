@@ -32,18 +32,21 @@ namespace RV_FaceRecognition
             pictureBoxPassword.BackgroundImage = Properties.Resources.hide;
         }
 
+        // Выбор поля Обычного пользователя
         private void CustomCheckBoxDeffault_Click(object sender, MouseEventArgs e)
         {
             if (!customCheckBoxDeffault.IsChecked)
                 customCheckBoxAdmin.IsChecked = false;
         }
 
+        // Выбор поля Администратора
         private void CustomCheckBoxAdmin_Click(object sender, MouseEventArgs e)
         {
             if (!customCheckBoxAdmin.IsChecked)
                 customCheckBoxDeffault.IsChecked = false;
         }
 
+        // Проверяем введенные поля и в случае успеха регистрируем нового пользователя
         private void CustomButtonRegister_Click(object sender, EventArgs e)
         {
             if (customTextBoxLogin.Text.Length < 1 || customTextBoxPassword.Text.Length < 1) return;
@@ -110,6 +113,7 @@ namespace RV_FaceRecognition
             }
         }
 
+        // Показ или сокрытие поля с вводом пароля
         private void pictureBoxPassword_Click(object sender, EventArgs e)
         {
             // Изменение значения 

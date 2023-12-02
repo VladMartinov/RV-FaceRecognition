@@ -6,6 +6,7 @@ namespace RV_FaceRecognition.Components.Methods
 {
     public class TokenGenerator
     {
+        // Method for randomly generating a new token
         public static string GenerateRandomToken(int length)
         {
             using (var rng = new RNGCryptoServiceProvider())
@@ -16,6 +17,7 @@ namespace RV_FaceRecognition.Components.Methods
             }
         }
 
+        // Method that encrypts the received token
         public static string ComputeSHA256Hash(string input)
         {
             using (var sha256 = new SHA256Managed())

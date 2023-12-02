@@ -31,6 +31,7 @@ namespace RV_FaceRecognition.Components.Methods
             this.connectionString = connectionString;
         }
 
+        // Method that checks the presence of a token in the database
         public bool TokenExists(string token)
         {
             bool exists = false;
@@ -60,6 +61,7 @@ namespace RV_FaceRecognition.Components.Methods
             return exists;
         }
 
+        // Method that add a new token to the database
         public void SaveToken(string token, string userLogin)
         {
             using (var connection = new SqlConnection(connectionString))
@@ -75,6 +77,7 @@ namespace RV_FaceRecognition.Components.Methods
             }
         }
 
+        // Method that removes a token from the database
         public void RemoveTokenFromDatabase(string token)
         {
             using (var connection = new SqlConnection(connectionString))

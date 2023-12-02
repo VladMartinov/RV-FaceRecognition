@@ -42,6 +42,7 @@ namespace RV_FaceRecognition
             pictureBoxPassword.BackgroundImage = Properties.Resources.hide;
         }
 
+        // Открываем модалку для создания нового пользователя
         private void Label1_Click(object sender, EventArgs e)
         {
             FormRegister formRegister = new FormRegister();
@@ -54,6 +55,7 @@ namespace RV_FaceRecognition
             }
         }
 
+        // Последовательно открываем модалки ввода поля и проверяем содержимое, далее в случае успеха обновляем пароль
         private void label2_Click(object sender, EventArgs e)
         {
             Regex regex = new Regex(this.validationPattern, RegexOptions.IgnoreCase);
@@ -113,6 +115,7 @@ namespace RV_FaceRecognition
             MessageBox.Show(resultMessage);
         }
 
+        // Проверяем введенные поля и в случае успеха авторизуем пользователя в систему
         private void customButtonLogIn_Click(object sender, EventArgs e)
         {
             Regex regex = new Regex(this.validationPattern, RegexOptions.IgnoreCase);
@@ -192,6 +195,7 @@ namespace RV_FaceRecognition
                 MessageBox.Show("Авторизация неудачна, попробуйте еще раз");
         }
 
+        // Отоброжение или сокрытие поля с паролем
         private void pictureBoxPassword_Click(object sender, EventArgs e)
         {
             // Изменение значения 

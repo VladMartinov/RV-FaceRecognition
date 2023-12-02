@@ -82,6 +82,7 @@ namespace RV_FaceRecognition
         }
 
         #region -- Face Detection --
+        // Запускаем камеру для распознавания
         private void customButtonCamera_Click(object sender, EventArgs e)
         {
             if (videoCapture != null) return;
@@ -118,7 +119,6 @@ namespace RV_FaceRecognition
                         CvInvoke.Rectangle(currentFrame, face, new Bgr(Color.Red).MCvScalar, 2);
 
                         /* Add Persone */
-                        /* - Assing the face to the pictureBoxDetected - */
                         Image<Bgr, Byte> resultImage = currentFrame.Convert<Bgr, Byte>();
                         resultImage.ROI = face;
 
@@ -164,8 +164,6 @@ namespace RV_FaceRecognition
                                     FontFace.HersheyComplex, 1.0, new Bgr(Color.Orange).MCvScalar);
 
                                 CvInvoke.Rectangle(currentFrame, face, new Bgr(Color.Red).MCvScalar, 2);
-
-
                             }
                         }
                     }
@@ -193,7 +191,7 @@ namespace RV_FaceRecognition
         }
 
 
-        /* Step 4 - Train images .. we will use the saved images from the previous example */
+        /* Train images. We will use the saved images from the data base */
         private void TrainImagesFromDir()
         {
             int imagesCount = 0;
@@ -251,8 +249,8 @@ namespace RV_FaceRecognition
 
                 if (trainedFaces.Count() > 0)
                 {
+                    // Main function. We will train recognizer on the images and set the border
                     recognizer = new EigenFaceRecognizer(imagesCount, threshold);
-                    // recognizer = new FisherFaceRecognizer(imagesCount, threshold);
                     recognizer.Train(trainedFaces.ToArray(), personsLabes.ToArray());
 
                     isTrained = true;
@@ -269,6 +267,7 @@ namespace RV_FaceRecognition
         }
         #endregion
 
+        // Открываем модалку авторизации и в случае успеха заполяем поля и разрешаем доступы в зависимости от роли, так же генерируем новый токен
         private void CustomButtonAuth_Click(object sender, EventArgs e)
         {
             FormLogin formLogin = new FormLogin();
@@ -304,18 +303,21 @@ namespace RV_FaceRecognition
             }
         }
 
-        private void CustomButtonInfoWindow_Click(object sender, EventArgs e)
+        // Открываем окно с изобажениями из БД
+        private void CustomButtonInfoWindow_Clыick(object sender, EventArgs e)
         {
             FormInfo formInfo = new FormInfo(this.login, this.userRole);
             formInfo.ShowDialog();
         }
 
+        // Открываем окно с записями логов приложения из БД
         private void customButtonRecords_Click(object sender, EventArgs e)
         {
             FormRecords formRecords = new FormRecords(this.login);
             formRecords.ShowDialog();
         }
 
+        // Проверяем наличия токен и в случае успеха авторизируем пользователя
         private void MainForm_Load(object sender, EventArgs e)
         {
             // Получаем токен из реестра

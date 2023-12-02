@@ -17,6 +17,7 @@ namespace RV_FaceRecognition.Components.Methods
             tokenDatabase = new TokenDatabase(connectionString);
         }
 
+        // Check, token is valid or not
         public bool IsTokenValid(string token)
         {
             // Проверяем наличие токена в базе данных
@@ -69,6 +70,7 @@ namespace RV_FaceRecognition.Components.Methods
 
             if (!valid)
             {
+                // Удаляем токен из регистра и базы данных если он просрочен
                 RemoveTokenFromRegistry();
                 this.tokenDatabase.RemoveTokenFromDatabase(token);
             }

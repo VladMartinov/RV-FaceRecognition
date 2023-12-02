@@ -32,6 +32,7 @@ namespace RV_FaceRecognition
             await UpdateGrid();
         }
 
+        // Открываем окно добавления нового изображения
         private async void customButtonAdd_Click(object sender, EventArgs e)
         {
             imageForm = new FormImage(login);
@@ -46,6 +47,7 @@ namespace RV_FaceRecognition
             }
         }
 
+        // Открываем окно обновления существующего изображения
         private async void customButtonUpd_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count <= 0) return;
@@ -67,6 +69,7 @@ namespace RV_FaceRecognition
             }
         }
 
+        // Удаляем выбранные изображения из базы данных
         private async void customButtonDel_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count < 0) return;
@@ -108,6 +111,7 @@ namespace RV_FaceRecognition
                 await UpdateGrid();
         }
 
+        // Обновляем содержимое таблицы ассинхронно (чтобы программа не зависала в случае большого количества файлов)
         private async Task UpdateGrid()
         {
             await Task.Run(() =>

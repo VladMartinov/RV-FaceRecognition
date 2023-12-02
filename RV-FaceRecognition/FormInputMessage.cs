@@ -18,6 +18,7 @@ namespace RV_FaceRecognition
             labelMain.Text = title;
         }
 
+        // Закрываем модалку в случае введенного поля с успешным результатом
         private void SendResult()
         {
             if (inputValue == "") return;
@@ -27,6 +28,7 @@ namespace RV_FaceRecognition
             this.Close();
         }
 
+        // Закрываем модалку с результатом отмены
         private void CloseModal()
         {
             this.DialogResult = DialogResult.Cancel;

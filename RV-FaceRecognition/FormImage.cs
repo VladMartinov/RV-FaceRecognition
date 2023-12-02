@@ -24,12 +24,14 @@ namespace RV_FaceRecognition
         #endregion
 
 
+        // В сулчае если создаем новый экземпляр сущнсоти
         public FormImage(string login)
         {
             InitializeComponent();
             this.login = login;
         }
 
+        // В сулчае если получаем ID изображения, мы получаем его из БД и заполняем поля
         public FormImage(string login, int ID)
         {
             InitializeComponent();
@@ -60,6 +62,7 @@ namespace RV_FaceRecognition
             }
         }
 
+        // В случае если мы получили изображение при нажатии на кнопку "Добавить изображение" в главном меню и выбрали пункт добавить в БД
         public FormImage(string pathToImage, string login)
         {
             InitializeComponent();
@@ -70,11 +73,13 @@ namespace RV_FaceRecognition
             labelFileName.Text = "Выбранный файл: " + PathToName(pathToImage);
         }
 
+        // Получаем наименование файла
         private string PathToName(string path)
         {
             return path.Split('\\').Last().Split('.')[0];
         }
 
+        // При нажатии на кнопку выбора файла появляется окно проводника где пользователь выбирает файл формата .jpg размером < 0.75
         private void customButtonSelectFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -102,6 +107,7 @@ namespace RV_FaceRecognition
             }
         }
 
+        // Отправка либо измененного либо нового экземпляра сущности изображения в базу данных
         private void customButtonOK_Click(object sender, EventArgs e)
         {
             if (imageInByte != null)
@@ -163,6 +169,7 @@ namespace RV_FaceRecognition
             this.Close();
         }
 
+        // Конвертация изображения в байты для отправки в БД
         private byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
