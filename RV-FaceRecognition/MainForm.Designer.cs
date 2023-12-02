@@ -31,18 +31,19 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.labelActions = new System.Windows.Forms.Label();
+            this.customButtonAddImage = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.roundedTableLayoutPanel = new RV_FaceRecognition.Components.Controls.RoundedTableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelRole = new System.Windows.Forms.Label();
             this.labelLogin = new System.Windows.Forms.Label();
             this.customButtonAuth = new RV_FaceRecognition.Components.Controls.CustomButton();
-            this.customButtonRecognize = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.customButtonTrain = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.customButtonInfoWindow = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.customButtonDetect = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.customButtonCamera = new RV_FaceRecognition.Components.Controls.CustomButton();
+            this.roundedPictureBox1 = new RV_FaceRecognition.Components.Controls.RoundedPictureBox();
             this.mainFormStyle = new RV_FaceRecognition.Components.RVFormStyle(this.components);
             this.mainRoundingButtonsComponent = new RV_FaceRecognition.Components.RoundingButtonsComponent(this.components);
-            this.roundedPictureBox1 = new RV_FaceRecognition.Components.Controls.RoundedPictureBox();
+            this.customButtonRecords = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.roundedTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.roundedPictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -58,13 +59,27 @@
             this.labelActions.TabIndex = 1;
             this.labelActions.Text = "Панель инструментов";
             // 
+            // customButtonAddImage
+            // 
+            this.customButtonAddImage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
+            this.customButtonAddImage.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.customButtonAddImage.ForeColor = System.Drawing.Color.White;
+            this.customButtonAddImage.Location = new System.Drawing.Point(554, 156);
+            this.customButtonAddImage.Name = "customButtonAddImage";
+            this.customButtonAddImage.Rounding = 13;
+            this.customButtonAddImage.RoundingEnable = true;
+            this.customButtonAddImage.Size = new System.Drawing.Size(225, 40);
+            this.customButtonAddImage.TabIndex = 9;
+            this.customButtonAddImage.Text = "Добавить изображение";
+            this.customButtonAddImage.Click += new System.EventHandler(this.customButtonAddImage_Click);
+            // 
             // roundedTableLayoutPanel
             // 
             this.roundedTableLayoutPanel.BackColor = System.Drawing.Color.Transparent;
             this.roundedTableLayoutPanel.ColumnCount = 2;
             this.roundedTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.roundedTableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.roundedTableLayoutPanel.Controls.Add(this.label1, 1, 0);
+            this.roundedTableLayoutPanel.Controls.Add(this.labelRole, 1, 0);
             this.roundedTableLayoutPanel.Controls.Add(this.labelLogin, 0, 0);
             this.roundedTableLayoutPanel.ForeColor = System.Drawing.Color.Black;
             this.roundedTableLayoutPanel.Location = new System.Drawing.Point(554, 385);
@@ -77,20 +92,20 @@
             this.roundedTableLayoutPanel.Size = new System.Drawing.Size(225, 20);
             this.roundedTableLayoutPanel.TabIndex = 8;
             // 
-            // label1
+            // labelRole
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.labelRole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(115, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "ID: ~";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelRole.AutoSize = true;
+            this.labelRole.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRole.ForeColor = System.Drawing.Color.White;
+            this.labelRole.Location = new System.Drawing.Point(115, 0);
+            this.labelRole.Name = "labelRole";
+            this.labelRole.Size = new System.Drawing.Size(107, 20);
+            this.labelRole.TabIndex = 1;
+            this.labelRole.Text = "Роль: ~";
+            this.labelRole.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelLogin
             // 
@@ -121,38 +136,26 @@
             this.customButtonAuth.Text = "Log in / Register";
             this.customButtonAuth.Click += new System.EventHandler(this.CustomButtonAuth_Click);
             // 
-            // customButtonRecognize
-            // 
-            this.customButtonRecognize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
-            this.customButtonRecognize.Font = new System.Drawing.Font("Open Sans", 12F);
-            this.customButtonRecognize.ForeColor = System.Drawing.Color.White;
-            this.customButtonRecognize.Location = new System.Drawing.Point(554, 280);
-            this.customButtonRecognize.Name = "customButtonRecognize";
-            this.customButtonRecognize.Rounding = 13;
-            this.customButtonRecognize.RoundingEnable = true;
-            this.customButtonRecognize.Size = new System.Drawing.Size(225, 40);
-            this.customButtonRecognize.TabIndex = 6;
-            this.customButtonRecognize.Text = "Распознать";
-            // 
             // customButtonTrain
             // 
             this.customButtonTrain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
             this.customButtonTrain.Font = new System.Drawing.Font("Open Sans", 12F);
             this.customButtonTrain.ForeColor = System.Drawing.Color.White;
-            this.customButtonTrain.Location = new System.Drawing.Point(554, 223);
+            this.customButtonTrain.Location = new System.Drawing.Point(554, 256);
             this.customButtonTrain.Name = "customButtonTrain";
             this.customButtonTrain.Rounding = 13;
             this.customButtonTrain.RoundingEnable = true;
             this.customButtonTrain.Size = new System.Drawing.Size(225, 40);
             this.customButtonTrain.TabIndex = 5;
             this.customButtonTrain.Text = "Обучить";
+            this.customButtonTrain.Click += new System.EventHandler(this.customButtonTrain_Click);
             // 
             // customButtonInfoWindow
             // 
             this.customButtonInfoWindow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
             this.customButtonInfoWindow.Font = new System.Drawing.Font("Open Sans", 12F);
             this.customButtonInfoWindow.ForeColor = System.Drawing.Color.White;
-            this.customButtonInfoWindow.Location = new System.Drawing.Point(554, 168);
+            this.customButtonInfoWindow.Location = new System.Drawing.Point(554, 206);
             this.customButtonInfoWindow.Name = "customButtonInfoWindow";
             this.customButtonInfoWindow.Rounding = 13;
             this.customButtonInfoWindow.RoundingEnable = true;
@@ -166,13 +169,14 @@
             this.customButtonDetect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
             this.customButtonDetect.Font = new System.Drawing.Font("Open Sans", 12F);
             this.customButtonDetect.ForeColor = System.Drawing.Color.White;
-            this.customButtonDetect.Location = new System.Drawing.Point(554, 111);
+            this.customButtonDetect.Location = new System.Drawing.Point(554, 106);
             this.customButtonDetect.Name = "customButtonDetect";
             this.customButtonDetect.Rounding = 13;
             this.customButtonDetect.RoundingEnable = true;
             this.customButtonDetect.Size = new System.Drawing.Size(225, 40);
             this.customButtonDetect.TabIndex = 3;
             this.customButtonDetect.Text = "Обнаружить";
+            this.customButtonDetect.Click += new System.EventHandler(this.customButtonDetect_Click);
             // 
             // customButtonCamera
             // 
@@ -186,17 +190,7 @@
             this.customButtonCamera.Size = new System.Drawing.Size(225, 40);
             this.customButtonCamera.TabIndex = 2;
             this.customButtonCamera.Text = "Камера";
-            // 
-            // mainFormStyle
-            // 
-            this.mainFormStyle.Form = this;
-            this.mainFormStyle.FormStyle = RV_FaceRecognition.Components.RVFormStyle.fStyle.UserStyle;
-            // 
-            // mainRoundingButtonsComponent
-            // 
-            this.mainRoundingButtonsComponent.Rounding = 13;
-            this.mainRoundingButtonsComponent.RoundingEnable = true;
-            this.mainRoundingButtonsComponent.TargetForm = this;
+            this.customButtonCamera.Click += new System.EventHandler(this.customButtonCamera_Click);
             // 
             // roundedPictureBox1
             // 
@@ -210,15 +204,41 @@
             this.roundedPictureBox1.TabIndex = 0;
             this.roundedPictureBox1.TabStop = false;
             // 
+            // mainFormStyle
+            // 
+            this.mainFormStyle.Form = this;
+            this.mainFormStyle.FormStyle = RV_FaceRecognition.Components.RVFormStyle.fStyle.UserStyle;
+            // 
+            // mainRoundingButtonsComponent
+            // 
+            this.mainRoundingButtonsComponent.Rounding = 13;
+            this.mainRoundingButtonsComponent.RoundingEnable = true;
+            this.mainRoundingButtonsComponent.TargetForm = this;
+            // 
+            // customButtonRecords
+            // 
+            this.customButtonRecords.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
+            this.customButtonRecords.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.customButtonRecords.ForeColor = System.Drawing.Color.White;
+            this.customButtonRecords.Location = new System.Drawing.Point(554, 306);
+            this.customButtonRecords.Name = "customButtonRecords";
+            this.customButtonRecords.Rounding = 13;
+            this.customButtonRecords.RoundingEnable = true;
+            this.customButtonRecords.Size = new System.Drawing.Size(225, 40);
+            this.customButtonRecords.TabIndex = 10;
+            this.customButtonRecords.Text = "История записей";
+            this.customButtonRecords.Click += new System.EventHandler(this.customButtonRecords_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
             this.ClientSize = new System.Drawing.Size(799, 451);
+            this.Controls.Add(this.customButtonRecords);
+            this.Controls.Add(this.customButtonAddImage);
             this.Controls.Add(this.roundedTableLayoutPanel);
             this.Controls.Add(this.customButtonAuth);
-            this.Controls.Add(this.customButtonRecognize);
             this.Controls.Add(this.customButtonTrain);
             this.Controls.Add(this.customButtonInfoWindow);
             this.Controls.Add(this.customButtonDetect);
@@ -231,6 +251,7 @@
             this.MinimumSize = new System.Drawing.Size(815, 490);
             this.Name = "MainForm";
             this.Text = "RV Face Recognition";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.roundedTableLayoutPanel.ResumeLayout(false);
             this.roundedTableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.roundedPictureBox1)).EndInit();
@@ -246,14 +267,15 @@
         private Components.Controls.RoundedPictureBox roundedPictureBox1;
         private System.Windows.Forms.Label labelActions;
         private Components.Controls.CustomButton customButtonCamera;
-        private Components.Controls.CustomButton customButtonRecognize;
         private Components.Controls.CustomButton customButtonTrain;
         private Components.Controls.CustomButton customButtonInfoWindow;
         private Components.Controls.CustomButton customButtonDetect;
         private Components.Controls.CustomButton customButtonAuth;
         private Components.Controls.RoundedTableLayoutPanel roundedTableLayoutPanel;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelRole;
         private System.Windows.Forms.Label labelLogin;
+        private Components.Controls.CustomButton customButtonAddImage;
+        private Components.Controls.CustomButton customButtonRecords;
     }
 }
 

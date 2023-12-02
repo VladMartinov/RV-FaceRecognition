@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RV_FaceRecognition.Components.Controls
@@ -93,6 +89,12 @@ namespace RV_FaceRecognition.Components.Controls
             g.FillPath(new SolidBrush(BackColor), rectPath);
 
             g.SetClip(rectPath);
+
+            if (!this.Enabled)
+            {
+                g.DrawRectangle(new Pen(Color.FromArgb(100, Color.Gray)), rect);
+                g.FillRectangle(new SolidBrush(Color.FromArgb(100, Color.Gray)), rect);
+            }
 
             if (MouseEntered)
             {

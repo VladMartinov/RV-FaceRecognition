@@ -177,6 +177,8 @@ namespace RV_FaceRecognition.Components
             g.SmoothingMode = SmoothingMode.HighQuality;
 
             Rectangle rectHeader = new Rectangle(0, 0, Form.Width - 1, HeaderHeight);
+            Rectangle rectBorder = new Rectangle(0, 0, Form.Width - 2, Form.Height - 2);
+            GraphicsPath rectBorderPath = Drawer.RoundedRectangle(rectBorder, 20);
 
             Rectangle rectTitleText = new Rectangle(rectHeader.X + 25, rectHeader.Y, rectHeader.Width, rectHeader.Height);
             Rectangle rectIcon = new Rectangle(
@@ -194,7 +196,7 @@ namespace RV_FaceRecognition.Components
 
             // Header
             g.DrawRectangle(new Pen(HeaderColor), rectHeader);
-            g.FillRectangle(new SolidBrush(HeaderColor), rectHeader);
+            g.FillRectangle(new SolidBrush(HeaderColor), rectHeader);;
 
             // Header Icon
             g.DrawImage(Form.Icon.ToBitmap(), rectIcon);
@@ -207,6 +209,9 @@ namespace RV_FaceRecognition.Components
             g.FillRectangle(new SolidBrush(BtnCloseHovered ? HeaderColor : CloseBtnBgColor), rectBtnClose);
 
             DrawCrossHair(g, rectCrosshair, CloseBtnCrosshairColor);
+
+            // Border
+            g.DrawPath(new Pen(Color.Black), rectBorderPath);
         }
 
         private void DrawCrossHair(Graphics g, Rectangle rect, Pen pen)

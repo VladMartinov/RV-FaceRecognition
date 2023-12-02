@@ -36,7 +36,10 @@
             this.rvFormStyle1 = new RV_FaceRecognition.Components.RVFormStyle(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.customButtonLogIn = new RV_FaceRecognition.Components.Controls.CustomButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBoxPassword = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -52,7 +55,7 @@
             // customTextBoxPassword
             // 
             this.customTextBoxPassword.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.customTextBoxPassword.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.customTextBoxPassword.Font = new System.Drawing.Font("Open Sans", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.customTextBoxPassword.FontTextPreview = new System.Drawing.Font("Open Sans", 10F);
             this.customTextBoxPassword.ForeColor = System.Drawing.Color.White;
             this.customTextBoxPassword.Location = new System.Drawing.Point(72, 304);
@@ -107,6 +110,30 @@
             this.customButtonLogIn.Size = new System.Drawing.Size(225, 40);
             this.customButtonLogIn.TabIndex = 4;
             this.customButtonLogIn.Text = "Log In";
+            this.customButtonLogIn.Click += new System.EventHandler(this.customButtonLogIn_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label2.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(69, 327);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(114, 15);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Forgot the password";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // pictureBoxPassword
+            // 
+            this.pictureBoxPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBoxPassword.Location = new System.Drawing.Point(333, 299);
+            this.pictureBoxPassword.Name = "pictureBoxPassword";
+            this.pictureBoxPassword.Size = new System.Drawing.Size(25, 25);
+            this.pictureBoxPassword.TabIndex = 13;
+            this.pictureBoxPassword.TabStop = false;
+            this.pictureBoxPassword.Click += new System.EventHandler(this.pictureBoxPassword_Click);
             // 
             // FormLogin
             // 
@@ -114,6 +141,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
             this.ClientSize = new System.Drawing.Size(384, 451);
+            this.Controls.Add(this.pictureBoxPassword);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.customButtonLogIn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.customTextBoxPassword);
@@ -125,6 +154,7 @@
             this.Name = "FormLogin";
             this.Text = "RV Face Recognition";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPassword)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,5 +168,7 @@
         private Components.Controls.CustomTextBox customTextBoxPassword;
         private System.Windows.Forms.Label label1;
         private Components.Controls.CustomButton customButtonLogIn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBoxPassword;
     }
 }

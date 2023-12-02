@@ -156,6 +156,25 @@ namespace RV_FaceRecognition.Components.Controls
                 }
             }
         }
+
+        /// <summary>
+        /// Once active parametr.
+        /// </summary>
+        private bool OnceActiveValue = false;
+        public bool OnceActive
+        {
+            get
+            {
+                return OnceActiveValue;
+            }
+            set
+            {
+                if (OnceActiveValue != value)
+                {
+                    OnceActiveValue = value;
+                }
+            }
+        }
         #endregion
 
         #region Constructor
@@ -261,7 +280,7 @@ namespace RV_FaceRecognition.Components.Controls
         {
             base.OnMouseDown(e);
 
-            if (IsChecked) return;
+            if (IsChecked && OnceActiveValue) return;
             IsChecked = !IsChecked;
 
             Invalidate();
