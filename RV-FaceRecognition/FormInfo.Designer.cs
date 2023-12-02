@@ -202,7 +202,7 @@
             this.iMAGENAMEDataGridViewTextBoxColumn.HeaderText = "ФИО";
             this.iMAGENAMEDataGridViewTextBoxColumn.Name = "iMAGENAMEDataGridViewTextBoxColumn";
             this.iMAGENAMEDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iMAGENAMEDataGridViewTextBoxColumn.Width = 200;
+            this.iMAGENAMEDataGridViewTextBoxColumn.Width = 220;
             // 
             // dATECREATEDataGridViewTextBoxColumn
             // 

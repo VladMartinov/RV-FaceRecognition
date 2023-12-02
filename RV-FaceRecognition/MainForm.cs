@@ -38,8 +38,6 @@ namespace RV_FaceRecognition
 
         private CascadeClassifier faceCascadeClassifier;
         private EigenFaceRecognizer recognizer;
-        // private FisherFaceRecognizer recognizer;
-
 
         /* Get/Set */
         public string Login
@@ -55,6 +53,7 @@ namespace RV_FaceRecognition
             get => userRole;
         }
         #endregion
+
         public MainForm()
         {
             InitializeComponent();
@@ -79,11 +78,14 @@ namespace RV_FaceRecognition
 
             customButtonAddImage.Enabled = false;
             customButtonInfoWindow.Enabled = false;
+            customButtonRecords.Enabled = false;
         }
 
         #region -- Face Detection --
         private void customButtonCamera_Click(object sender, EventArgs e)
         {
+            if (videoCapture != null) return;
+
             videoCapture = new Capture();
             videoCapture.ImageGrabbed += ProcessFrame;
             videoCapture.Start();
@@ -149,7 +151,7 @@ namespace RV_FaceRecognition
                             var result = recognizer.Predict(grayFaceResult);
 
                             /* - Here results found known faces - */
-                            if (result.Label != -1 && result.Distance < 4250)
+                            if (result.Label != -1 && result.Distance < 4500)
                             {
                                 CvInvoke.PutText(currentFrame, personsNames[result.Label], new Point(face.X - 2, face.Y - 2),
                                     FontFace.HersheyComplex, 1.0, new Bgr(Color.Orange).MCvScalar);
@@ -290,6 +292,11 @@ namespace RV_FaceRecognition
                 customButtonAddImage.Enabled = true;
                 customButtonInfoWindow.Enabled = true;
 
+                if (this.userRole == 2)
+                    customButtonRecords.Enabled = true;
+                else
+                    customButtonRecords.Enabled = false;
+
                 string token = TokenGenerator.GenerateRandomToken(64);
                 token = TokenGenerator.ComputeSHA256Hash(token);
 
@@ -301,6 +308,12 @@ namespace RV_FaceRecognition
         {
             FormInfo formInfo = new FormInfo(this.login, this.userRole);
             formInfo.ShowDialog();
+        }
+
+        private void customButtonRecords_Click(object sender, EventArgs e)
+        {
+            FormRecords formRecords = new FormRecords(this.login);
+            formRecords.ShowDialog();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -347,6 +360,11 @@ namespace RV_FaceRecognition
 
                         customButtonAddImage.Enabled = true;
                         customButtonInfoWindow.Enabled = true;
+
+                        if (this.userRole == 2)
+                            customButtonRecords.Enabled = true;
+                        else 
+                            customButtonRecords.Enabled = false;
 
                         reader.Close();
                     }

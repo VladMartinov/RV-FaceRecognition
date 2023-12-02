@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RV_FaceRecognition.Components.Methods;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -37,7 +38,12 @@ namespace RV_FaceRecognition
             imageForm.ShowDialog();
 
             if (imageForm.DialogResult == DialogResult.OK)
+            {
                 await UpdateGrid();
+
+                RecordsManager recordsManager = new RecordsManager(this.login);
+                recordsManager.RegisterAction(TypeActiom.AddImage, $"Пользователь \"{this.login}\" добавил изображение с именем \"{imageForm.NameRow}\"");
+            }
         }
 
         private async void customButtonUpd_Click(object sender, EventArgs e)
@@ -53,7 +59,12 @@ namespace RV_FaceRecognition
             imageForm.ShowDialog();
 
             if (imageForm.DialogResult == DialogResult.OK)
+            {
                 await UpdateGrid();
+
+                RecordsManager recordsManager = new RecordsManager(this.login);
+                recordsManager.RegisterAction(TypeActiom.UpdateImage, $"Пользователь \"{this.login}\" обновил изображение с именем \"{imageForm.NameRow}\"");
+            }
         }
 
         private async void customButtonDel_Click(object sender, EventArgs e)
@@ -79,7 +90,12 @@ namespace RV_FaceRecognition
                         int rowsAffected = command.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
+                        {
                             MessageBox.Show("Изображение успешно удалено!", "Успех!");
+
+                            RecordsManager recordsManager = new RecordsManager(this.login);
+                            recordsManager.RegisterAction(TypeActiom.DeleteImage, $"Пользователь \"{this.login}\" удалил изображение с именем \"{row.Cells[2].Value}\"");
+                        }
                         else
                             MessageBox.Show("При удалении изображения возникла ошибка!", "Ошибка!");
                     }

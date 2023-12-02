@@ -43,6 +43,7 @@
             this.roundedPictureBox1 = new RV_FaceRecognition.Components.Controls.RoundedPictureBox();
             this.mainFormStyle = new RV_FaceRecognition.Components.RVFormStyle(this.components);
             this.mainRoundingButtonsComponent = new RV_FaceRecognition.Components.RoundingButtonsComponent(this.components);
+            this.customButtonRecords = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.roundedTableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.roundedPictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -214,12 +215,27 @@
             this.mainRoundingButtonsComponent.RoundingEnable = true;
             this.mainRoundingButtonsComponent.TargetForm = this;
             // 
+            // customButtonRecords
+            // 
+            this.customButtonRecords.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
+            this.customButtonRecords.Font = new System.Drawing.Font("Open Sans", 12F);
+            this.customButtonRecords.ForeColor = System.Drawing.Color.White;
+            this.customButtonRecords.Location = new System.Drawing.Point(554, 306);
+            this.customButtonRecords.Name = "customButtonRecords";
+            this.customButtonRecords.Rounding = 13;
+            this.customButtonRecords.RoundingEnable = true;
+            this.customButtonRecords.Size = new System.Drawing.Size(225, 40);
+            this.customButtonRecords.TabIndex = 10;
+            this.customButtonRecords.Text = "История записей";
+            this.customButtonRecords.Click += new System.EventHandler(this.customButtonRecords_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
             this.ClientSize = new System.Drawing.Size(799, 451);
+            this.Controls.Add(this.customButtonRecords);
             this.Controls.Add(this.customButtonAddImage);
             this.Controls.Add(this.roundedTableLayoutPanel);
             this.Controls.Add(this.customButtonAuth);
@@ -259,6 +275,7 @@
         private System.Windows.Forms.Label labelRole;
         private System.Windows.Forms.Label labelLogin;
         private Components.Controls.CustomButton customButtonAddImage;
+        private Components.Controls.CustomButton customButtonRecords;
     }
 }
 

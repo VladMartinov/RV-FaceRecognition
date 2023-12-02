@@ -14,6 +14,12 @@ namespace RV_FaceRecognition
 
         private byte[] imageInByte;
 
+        private string nameRow;
+        public string NameRow
+        {
+            get => nameRow;
+        }
+
         private int ImageId = -1;
         #endregion
 
@@ -130,6 +136,7 @@ namespace RV_FaceRecognition
                         else
                             MessageBox.Show("Изображение успешно добавлено!", "Успех!");
 
+                        this.nameRow = customTextBoxFullName.Text;
                         this.DialogResult = DialogResult.OK;
                         this.Close();
                     }

@@ -37,6 +37,9 @@ namespace RV_FaceRecognition
         public FormLogin()
         {
             InitializeComponent();
+
+            customTextBoxPassword.UseSystemPasswordChar = true;
+            pictureBoxPassword.BackgroundImage = Properties.Resources.hide;
         }
 
         private void Label1_Click(object sender, EventArgs e)
@@ -97,7 +100,16 @@ namespace RV_FaceRecognition
                 result = (bool)sqlParameter.Value;
             };
 
-            string resultMessage = result ? "Пароль успешно изменён!" : "Произошла ошибка, не удалось изменить пароль";
+            string resultMessage = "Произошла ошибка, не удалось изменить пароль";
+
+            if (result)
+            {
+                resultMessage = "Пароль успешно изменён!";
+
+                RecordsManager recordsManager = new RecordsManager(recoveryLogin);
+                recordsManager.RegisterAction(TypeActiom.UpdateUser, $"Был изменён пароль для следующего пользователя: {recoveryLogin}");
+            }
+
             MessageBox.Show(resultMessage);
         }
 
@@ -148,6 +160,9 @@ namespace RV_FaceRecognition
                     this.loginValue = currentLogin;
                     this.passwordValue = customTextBoxPassword.Text;
                     this.roleIdValue = Convert.ToInt16(sqlParameterSecond.Value);
+
+                    RecordsManager recordsManager = new RecordsManager(this.loginValue);
+                    recordsManager.RegisterAction(TypeActiom.Authorize, $"Была выполнена авторизация под следующим пользователем: {this.loginValue}");
                 }
             };
 
@@ -175,6 +190,18 @@ namespace RV_FaceRecognition
             }
             else
                 MessageBox.Show("Авторизация неудачна, попробуйте еще раз");
+        }
+
+        private void pictureBoxPassword_Click(object sender, EventArgs e)
+        {
+            // Изменение значения 
+            customTextBoxPassword.UseSystemPasswordChar = !customTextBoxPassword.UseSystemPasswordChar;
+
+            // Изменение изображения в зависимости от значения условия
+            if (customTextBoxPassword.UseSystemPasswordChar)
+                pictureBoxPassword.BackgroundImage = Properties.Resources.hide;
+            else
+                pictureBoxPassword.BackgroundImage = Properties.Resources.view;
         }
     }
 }

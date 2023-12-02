@@ -27,6 +27,9 @@ namespace RV_FaceRecognition
         public FormRegister()
         {
             InitializeComponent();
+
+            customTextBoxPassword.UseSystemPasswordChar = true;
+            pictureBoxPassword.BackgroundImage = Properties.Resources.hide;
         }
 
         private void CustomCheckBoxDeffault_Click(object sender, MouseEventArgs e)
@@ -93,6 +96,9 @@ namespace RV_FaceRecognition
                 this.loginValue = loginToSend;
                 this.passwordValue = customTextBoxPassword.Text;
 
+                RecordsManager recordsManager = new RecordsManager(this.loginValue);
+                recordsManager.RegisterAction(TypeActiom.CreateUser, $"Был добавлен новый пользователь: {this.loginValue}");
+
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -102,6 +108,18 @@ namespace RV_FaceRecognition
                 this.DialogResult = DialogResult.No;
                 this.Close();
             }
+        }
+
+        private void pictureBoxPassword_Click(object sender, EventArgs e)
+        {
+            // Изменение значения 
+            customTextBoxPassword.UseSystemPasswordChar = !customTextBoxPassword.UseSystemPasswordChar;
+
+            // Изменение изображения в зависимости от значения условия
+            if (customTextBoxPassword.UseSystemPasswordChar)
+                pictureBoxPassword.BackgroundImage = Properties.Resources.hide;
+            else
+                pictureBoxPassword.BackgroundImage = Properties.Resources.view;
         }
     }
 }
