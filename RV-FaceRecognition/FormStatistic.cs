@@ -9,13 +9,13 @@ namespace RV_FaceRecognition
     public partial class FormStatistic : Form
     {
         private SqlConnection connection;
-        private string login;
+        private int usersId;
 
-        public FormStatistic(string login)
+        public FormStatistic(int usersId)
         {
             InitializeComponent();
 
-            this.login = login;
+            this.usersId = usersId;
             this.connection = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString);
         }
 
@@ -34,8 +34,10 @@ namespace RV_FaceRecognition
             connection.Open();
 
             // Создаем команду для выполнения процедуры
-            SqlCommand command = new SqlCommand("STATISTICS_FOR_ALL_ACTIONS", connection);
-            command.CommandType = CommandType.StoredProcedure;
+            SqlCommand command = new SqlCommand("STATISTICS_FOR_ALL_ACTIONS", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
 
             SqlDataReader reader = command.ExecuteReader();
 
@@ -65,11 +67,13 @@ namespace RV_FaceRecognition
             connection.Open();
 
             // Создаем команду для выполнения процедуры
-            SqlCommand command = new SqlCommand("STATISTICS_ACTIONS_BY_USER", connection);
-            command.CommandType = CommandType.StoredProcedure;
+            SqlCommand command = new SqlCommand("STATISTICS_ACTIONS_BY_USER", connection)
+            {
+                CommandType = CommandType.StoredProcedure
+            };
 
             // Добавим параметр для процедуры
-            command.Parameters.AddWithValue("@USER_LOGIN", this.login);
+            command.Parameters.AddWithValue("@USERS_ID", usersId);
 
             SqlDataReader reader = command.ExecuteReader();
 

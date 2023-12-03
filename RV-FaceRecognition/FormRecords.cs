@@ -5,12 +5,12 @@ namespace RV_FaceRecognition
 {
     public partial class FormRecords : Form
     {
-        private string login;
+        private int usersId;
 
-        public FormRecords(string login)
+        public FormRecords(int usersId)
         {
             InitializeComponent();
-            this.login = login;
+            this.usersId = usersId;
         }
 
         private void FormRecords_Load(object sender, EventArgs e)
@@ -22,7 +22,7 @@ namespace RV_FaceRecognition
         // Открытие модалки со статистикой приложения
         private void customButtonStatistic_Click(object sender, EventArgs e)
         {
-            FormStatistic formStatistic = new FormStatistic(this.login);
+            FormStatistic formStatistic = new FormStatistic(this.usersId);
             formStatistic.ShowDialog();
         }
     }

@@ -16,6 +16,7 @@ namespace RV_FaceRecognition
     public partial class MainForm : Form
     {
         #region -- Values --
+        private int usersId;
         private string login;
         private string password;
         private int userRole;
@@ -40,6 +41,10 @@ namespace RV_FaceRecognition
         private EigenFaceRecognizer recognizer;
 
         /* Get/Set */
+        public int UserId
+        {
+            get => usersId;
+        }
         public string Login
         {
             get => login;
@@ -136,7 +141,7 @@ namespace RV_FaceRecognition
                             var answer = MessageBox.Show("Вы хотите загрузить данное изображение в базу данных?", "Загрузка в БД", MessageBoxButtons.YesNo);
                             if (answer == DialogResult.Yes)
                             {
-                                FormImage formImage = new FormImage(path, this.login);
+                                FormImage formImage = new FormImage(path, this.usersId);
                                 formImage.ShowDialog();
                             } 
                         }
@@ -284,6 +289,7 @@ namespace RV_FaceRecognition
                 labelLogin.Text = formLogin.login;
                 labelRole.Text = formLogin.role;
 
+                this.usersId = formLogin.UsersId;
                 this.login = formLogin.login;
                 this.password = formLogin.password;
                 this.userRole = formLogin.roleId;
@@ -299,21 +305,21 @@ namespace RV_FaceRecognition
                 string token = TokenGenerator.GenerateRandomToken(64);
                 token = TokenGenerator.ComputeSHA256Hash(token);
 
-                tokenManager.SaveTokenToRegistry(token, this.login);
+                tokenManager.SaveTokenToRegistry(token, this.usersId);
             }
         }
 
         // Открываем окно с изобажениями из БД
-        private void CustomButtonInfoWindow_Clыick(object sender, EventArgs e)
+        private void CustomButtonInfoWindow_Click(object sender, EventArgs e)
         {
-            FormInfo formInfo = new FormInfo(this.login, this.userRole);
+            FormInfo formInfo = new FormInfo(this.usersId, this.userRole);
             formInfo.ShowDialog();
         }
 
         // Открываем окно с записями логов приложения из БД
         private void customButtonRecords_Click(object sender, EventArgs e)
         {
-            FormRecords formRecords = new FormRecords(this.login);
+            FormRecords formRecords = new FormRecords(this.usersId);
             formRecords.ShowDialog();
         }
 
@@ -329,7 +335,7 @@ namespace RV_FaceRecognition
             if (!string.IsNullOrEmpty(token) && tokenManager.IsTokenValid(token))
             {
                 // Токен присутствует и валиден, выполняем авторизацию
-                this.login = tokenManager.Login;
+                this.usersId = tokenManager.UsersId;
 
                 using (SqlConnection connection = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString))
                 {
@@ -340,12 +346,12 @@ namespace RV_FaceRecognition
                     string query = "SELECT USERS.USER_LOGIN, USERS.USER_PASSWORD, USERS.ROLE_ID, ROLES.ROLE_NAME " +
                            "FROM USERS " +
                            "JOIN ROLES ON USERS.ROLE_ID = ROLES.ROLE_ID " +
-                           "WHERE USERS.USER_LOGIN = @Login";
+                           "WHERE USERS.USERS_ID = @USERS_ID";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         // Добавляем в параметры введенный логин
-                        command.Parameters.AddWithValue("@Login", this.login);
+                        command.Parameters.AddWithValue("@USERS_ID", this.usersId);
 
                         SqlDataReader reader = command.ExecuteReader();
 

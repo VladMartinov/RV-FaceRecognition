@@ -76,7 +76,7 @@
             this.customButtonCancel.Size = new System.Drawing.Size(100, 25);
             this.customButtonCancel.TabIndex = 6;
             this.customButtonCancel.Text = "Отмена";
-            this.customButtonCancel.Click += new System.EventHandler(this.customButtonCancel_Click);
+            this.customButtonCancel.Click += new System.EventHandler(this.CustomButtonCancel_Click);
             // 
             // customButtonOK
             // 
@@ -90,7 +90,7 @@
             this.customButtonOK.Size = new System.Drawing.Size(100, 25);
             this.customButtonOK.TabIndex = 5;
             this.customButtonOK.Text = "ОК";
-            this.customButtonOK.Click += new System.EventHandler(this.customButtonOK_Click);
+            this.customButtonOK.Click += new System.EventHandler(this.CustomButtonOK_Click);
             // 
             // customTextBoxFullName
             // 
@@ -117,7 +117,7 @@
             this.customButtonSelectFile.Size = new System.Drawing.Size(271, 25);
             this.customButtonSelectFile.TabIndex = 1;
             this.customButtonSelectFile.Text = "Выбрать файл";
-            this.customButtonSelectFile.Click += new System.EventHandler(this.customButtonSelectFile_Click);
+            this.customButtonSelectFile.Click += new System.EventHandler(this.CustomButtonSelectFile_Click);
             // 
             // rvFormStyle1
             // 

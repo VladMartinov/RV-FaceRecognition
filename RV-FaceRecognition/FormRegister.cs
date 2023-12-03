@@ -72,6 +72,7 @@ namespace RV_FaceRecognition
             int isAdmin = customCheckBoxAdmin.IsChecked ? 2 : 1;
 
             bool result;
+            int usersId;
 
             using (var conn = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString))
             using (var cmd = new SqlCommand("CREATE_USER", conn) { CommandType = CommandType.StoredProcedure })
@@ -79,17 +80,19 @@ namespace RV_FaceRecognition
                 cmd.Parameters.Add(new SqlParameter("@USER_LOGIN", loginToSend));
                 cmd.Parameters.Add(new SqlParameter("@USER_PASSWORD", passwordToSend));
                 cmd.Parameters.Add(new SqlParameter("@ROLE_ID", isAdmin));
-                SqlParameter sqlParameter = new SqlParameter("@RESULT", SqlDbType.Bit)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                cmd.Parameters.Add(sqlParameter);
+
+                SqlParameter resultParameter = new SqlParameter("@RESULT", SqlDbType.Bit) { Direction = ParameterDirection.Output };
+                SqlParameter usersIdParameter = new SqlParameter("@USERS_ID", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                
+                cmd.Parameters.Add(resultParameter);
+                cmd.Parameters.Add(usersIdParameter);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
-                result = (bool) sqlParameter.Value;
+                result = (bool) resultParameter.Value;
+                usersId = (int) usersIdParameter.Value;
             };
 
             if (result)
@@ -99,7 +102,7 @@ namespace RV_FaceRecognition
                 this.loginValue = loginToSend;
                 this.passwordValue = customTextBoxPassword.Text;
 
-                RecordsManager recordsManager = new RecordsManager(this.loginValue);
+                RecordsManager recordsManager = new RecordsManager(usersId);
                 recordsManager.RegisterAction(TypeActiom.CreateUser, $"Был добавлен новый пользователь: {this.loginValue}");
 
                 this.DialogResult = DialogResult.OK;

@@ -35,16 +35,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormRecords));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.viewRecordsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rv_facerecognitionDataSet = new RV_FaceRecognition.rv_facerecognitionDataSet();
-            this.rvFormStyle1 = new RV_FaceRecognition.Components.RVFormStyle(this.components);
-            this.view_RecordsTableAdapter = new RV_FaceRecognition.rv_facerecognitionDataSetTableAdapters.View_RecordsTableAdapter();
-            this.customButtonStatistic = new RV_FaceRecognition.Components.Controls.CustomButton();
             this.rECORDIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uSERLOGINDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.aCTIONNAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rECORDDESCRIPTIONDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rECORDDATEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewRecordsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rv_facerecognitionDataSet = new RV_FaceRecognition.rv_facerecognitionDataSet();
+            this.view_RecordsTableAdapter = new RV_FaceRecognition.rv_facerecognitionDataSetTableAdapters.View_RecordsTableAdapter();
+            this.customButtonStatistic = new RV_FaceRecognition.Components.Controls.CustomButton();
+            this.rvFormStyle1 = new RV_FaceRecognition.Components.RVFormStyle(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.viewRecordsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rv_facerecognitionDataSet)).BeginInit();
@@ -82,7 +82,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
-            this.dataGridView1.Location = new System.Drawing.Point(13, 11);
+            this.dataGridView1.Location = new System.Drawing.Point(20, 20);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -102,39 +102,6 @@
             this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView1.Size = new System.Drawing.Size(774, 399);
             this.dataGridView1.TabIndex = 7;
-            // 
-            // viewRecordsBindingSource
-            // 
-            this.viewRecordsBindingSource.DataMember = "View_Records";
-            this.viewRecordsBindingSource.DataSource = this.rv_facerecognitionDataSet;
-            // 
-            // rv_facerecognitionDataSet
-            // 
-            this.rv_facerecognitionDataSet.DataSetName = "rv_facerecognitionDataSet";
-            this.rv_facerecognitionDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // rvFormStyle1
-            // 
-            this.rvFormStyle1.Form = this;
-            this.rvFormStyle1.FormStyle = RV_FaceRecognition.Components.RVFormStyle.fStyle.UserStyle;
-            // 
-            // view_RecordsTableAdapter
-            // 
-            this.view_RecordsTableAdapter.ClearBeforeFill = true;
-            // 
-            // customButtonStatistic
-            // 
-            this.customButtonStatistic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
-            this.customButtonStatistic.Font = new System.Drawing.Font("Open Sans", 8F);
-            this.customButtonStatistic.ForeColor = System.Drawing.Color.White;
-            this.customButtonStatistic.Location = new System.Drawing.Point(619, 420);
-            this.customButtonStatistic.Name = "customButtonStatistic";
-            this.customButtonStatistic.Rounding = 13;
-            this.customButtonStatistic.RoundingEnable = true;
-            this.customButtonStatistic.Size = new System.Drawing.Size(168, 25);
-            this.customButtonStatistic.TabIndex = 8;
-            this.customButtonStatistic.Text = "Просмотреть статистику";
-            this.customButtonStatistic.Click += new System.EventHandler(this.customButtonStatistic_Click);
             // 
             // rECORDIDDataGridViewTextBoxColumn
             // 
@@ -176,17 +143,50 @@
             this.rECORDDATEDataGridViewTextBoxColumn.ReadOnly = true;
             this.rECORDDATEDataGridViewTextBoxColumn.Width = 120;
             // 
+            // viewRecordsBindingSource
+            // 
+            this.viewRecordsBindingSource.DataMember = "View_Records";
+            this.viewRecordsBindingSource.DataSource = this.rv_facerecognitionDataSet;
+            // 
+            // rv_facerecognitionDataSet
+            // 
+            this.rv_facerecognitionDataSet.DataSetName = "rv_facerecognitionDataSet";
+            this.rv_facerecognitionDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // view_RecordsTableAdapter
+            // 
+            this.view_RecordsTableAdapter.ClearBeforeFill = true;
+            // 
+            // customButtonStatistic
+            // 
+            this.customButtonStatistic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(162)))), ((int)(((byte)(189)))));
+            this.customButtonStatistic.Font = new System.Drawing.Font("Open Sans", 8F);
+            this.customButtonStatistic.ForeColor = System.Drawing.Color.White;
+            this.customButtonStatistic.Location = new System.Drawing.Point(626, 429);
+            this.customButtonStatistic.Name = "customButtonStatistic";
+            this.customButtonStatistic.Rounding = 13;
+            this.customButtonStatistic.RoundingEnable = true;
+            this.customButtonStatistic.Size = new System.Drawing.Size(168, 25);
+            this.customButtonStatistic.TabIndex = 8;
+            this.customButtonStatistic.Text = "Просмотреть статистику";
+            this.customButtonStatistic.Click += new System.EventHandler(this.customButtonStatistic_Click);
+            // 
+            // rvFormStyle1
+            // 
+            this.rvFormStyle1.Form = this;
+            this.rvFormStyle1.FormStyle = RV_FaceRecognition.Components.RVFormStyle.fStyle.UserStyle;
+            // 
             // FormRecords
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(112)))), ((int)(((byte)(139)))));
-            this.ClientSize = new System.Drawing.Size(792, 447);
+            this.ClientSize = new System.Drawing.Size(799, 456);
             this.Controls.Add(this.customButtonStatistic);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(808, 486);
-            this.MinimumSize = new System.Drawing.Size(808, 486);
+            this.MaximumSize = new System.Drawing.Size(815, 495);
+            this.MinimumSize = new System.Drawing.Size(815, 495);
             this.Name = "FormRecords";
             this.Text = "RV Face Recognition";
             this.Load += new System.EventHandler(this.FormRecords_Load);

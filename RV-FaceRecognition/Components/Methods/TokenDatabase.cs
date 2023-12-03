@@ -9,16 +9,16 @@ namespace RV_FaceRecognition.Components.Methods
         private string connectionString;
 
         private string token;
-        private string login;
+        private int usersId;
         private DateTime creationTime;
 
         public string Token
         {
             get => token;
         }
-        public string Login
+        public int UsersId
         {
-            get => login;
+            get => usersId;
         }
         public DateTime CreationTime
         {
@@ -40,7 +40,7 @@ namespace RV_FaceRecognition.Components.Methods
             {
                 connection.Open();
 
-                string query = "SELECT USER_LOGIN, DATE_CREATE FROM TOKENS WHERE TOKEN_ID = @TOKEN";
+                string query = "SELECT USERS_ID, DATE_CREATE FROM TOKENS WHERE TOKEN_ID = @TOKEN";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@TOKEN", token);
 
@@ -52,7 +52,7 @@ namespace RV_FaceRecognition.Components.Methods
                 reader.Read();
 
                 this.token = token;
-                this.login = reader.GetString(0).ToString();
+                this.usersId = reader.GetInt32(0);
                 this.creationTime = reader.GetDateTime(1);
 
                 reader.Close();
@@ -62,16 +62,16 @@ namespace RV_FaceRecognition.Components.Methods
         }
 
         // Method that add a new token to the database
-        public void SaveToken(string token, string userLogin)
+        public void SaveToken(string token, int usersId)
         {
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                string query = "INSERT INTO TOKENS (TOKEN_ID, USER_LOGIN) VALUES (@TOKEN, @USER_LOGIN)";
+                string query = "INSERT INTO TOKENS (TOKEN_ID, USERS_ID) VALUES (@TOKEN, @USERS_ID)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@TOKEN", token);
-                command.Parameters.AddWithValue("@USER_LOGIN", userLogin);
+                command.Parameters.AddWithValue("@USERS_ID", usersId);
 
                 command.ExecuteNonQuery();
             }

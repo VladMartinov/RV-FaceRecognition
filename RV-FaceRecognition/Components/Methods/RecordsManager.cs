@@ -16,12 +16,12 @@ namespace RV_FaceRecognition.Components.Methods
     public class RecordsManager
     {
         #region -- Values --
-        private string login;
+        private int usersId;
         #endregion
 
-        public RecordsManager(string login)
+        public RecordsManager(int usersId)
         {
-            this.login = login;
+            this.usersId = usersId;
         }
 
         // Method that adds an instance of an entity to the Database Records table
@@ -31,10 +31,10 @@ namespace RV_FaceRecognition.Components.Methods
             {
                 connection.Open();
 
-                string query = "INSERT INTO RECORDS (USER_LOGIN, ACTION_ID, RECORD_DESCRIPTION) VALUES (@USER_LOGIN, @ACTION_ID, @RECORD_DESCRIPTION)";
+                string query = "INSERT INTO RECORDS (USERS_ID, ACTION_ID, RECORD_DESCRIPTION) VALUES (@USERS_ID, @ACTION_ID, @RECORD_DESCRIPTION)";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("@USER_LOGIN", SqlDbType.VarChar, 20) { Value = this.login });
+                command.Parameters.Add(new SqlParameter("@USERS_ID", SqlDbType.Int) { Value = this.usersId });
                 command.Parameters.Add(new SqlParameter("@ACTION_ID", SqlDbType.SmallInt) { Value = (int) typeAction });
 
                 if (description.Length > 0)

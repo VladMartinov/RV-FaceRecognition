@@ -9,13 +9,17 @@ namespace RV_FaceRecognition
 {
     public partial class FormInfo : Form
     {
-        private string login;
+        private int usersId;
+        private string userLogin;
         private FormImage imageForm;
 
-        public FormInfo(string login, int userRole)
+        public FormInfo(int usersId, int userRole)
         {
             InitializeComponent();
-            this.login = login;
+            this.usersId = usersId;
+
+            UsersDatabase usersDatabase = new UsersDatabase(this.usersId, Properties.Settings.Default.rv_facerecognitionConnectionString);
+            this.userLogin = usersDatabase.GetUserLogin();
 
             dataGridView1.RowTemplate.Height = 200;
 
@@ -35,15 +39,15 @@ namespace RV_FaceRecognition
         // Открываем окно добавления нового изображения
         private async void customButtonAdd_Click(object sender, EventArgs e)
         {
-            imageForm = new FormImage(login);
+            imageForm = new FormImage(usersId);
             imageForm.ShowDialog();
 
             if (imageForm.DialogResult == DialogResult.OK)
             {
                 await UpdateGrid();
 
-                RecordsManager recordsManager = new RecordsManager(this.login);
-                recordsManager.RegisterAction(TypeActiom.AddImage, $"Пользователь \"{this.login}\" добавил изображение с именем \"{imageForm.NameRow}\"");
+                RecordsManager recordsManager = new RecordsManager(usersId);
+                recordsManager.RegisterAction(TypeActiom.AddImage, $"Пользователь \"{userLogin}\" добавил изображение с именем \"{imageForm.NameRow}\"");
             }
         }
 
@@ -57,15 +61,15 @@ namespace RV_FaceRecognition
                 return;
             }
             
-            imageForm = new FormImage(login, (int) dataGridView1.SelectedRows[0].Cells[0].Value);
+            imageForm = new FormImage(usersId, (int) dataGridView1.SelectedRows[0].Cells[0].Value);
             imageForm.ShowDialog();
 
             if (imageForm.DialogResult == DialogResult.OK)
             {
                 await UpdateGrid();
 
-                RecordsManager recordsManager = new RecordsManager(this.login);
-                recordsManager.RegisterAction(TypeActiom.UpdateImage, $"Пользователь \"{this.login}\" обновил изображение с именем \"{imageForm.NameRow}\"");
+                RecordsManager recordsManager = new RecordsManager(this.usersId);
+                recordsManager.RegisterAction(TypeActiom.UpdateImage, $"Пользователь \"{userLogin}\" обновил изображение с именем \"{imageForm.NameRow}\"");
             }
         }
 
@@ -96,8 +100,8 @@ namespace RV_FaceRecognition
                         {
                             MessageBox.Show("Изображение успешно удалено!", "Успех!");
 
-                            RecordsManager recordsManager = new RecordsManager(this.login);
-                            recordsManager.RegisterAction(TypeActiom.DeleteImage, $"Пользователь \"{this.login}\" удалил изображение с именем \"{row.Cells[2].Value}\"");
+                            RecordsManager recordsManager = new RecordsManager(usersId);
+                            recordsManager.RegisterAction(TypeActiom.DeleteImage, $"Пользователь \"{userLogin}\" удалил изображение с именем \"{row.Cells[2].Value}\"");
                         }
                         else
                             MessageBox.Show("При удалении изображения возникла ошибка!", "Ошибка!");
