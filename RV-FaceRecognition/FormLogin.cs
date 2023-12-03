@@ -10,12 +10,17 @@ namespace RV_FaceRecognition
     public partial class FormLogin : Form
     {
         #region -- Values --
+        private int usersId;
         private string loginValue;
         private string passwordValue;
         private string roleValue;
         private int roleIdValue;
         private readonly string validationPattern = "[^a-zA-Z0-9!@#]";
 
+        public int UsersId
+        {
+            get => usersId;
+        }
         public string login
         {
             get => loginValue;
@@ -83,23 +88,26 @@ namespace RV_FaceRecognition
             string recoveryPassword = PasswordEncryption.HashedPassword(formInputMessage.input);
 
             bool result;
+            int usersId;
 
             using (var conn = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString))
             using (var cmd = new SqlCommand("UPDATE_USER_PASSWORD", conn) { CommandType = CommandType.StoredProcedure })
             {
                 cmd.Parameters.Add(new SqlParameter("@USER_LOGIN", recoveryLogin));
                 cmd.Parameters.Add(new SqlParameter("@USER_PASSWORD", recoveryPassword));
-                SqlParameter sqlParameter = new SqlParameter("@RESULT", SqlDbType.Bit)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                cmd.Parameters.Add(sqlParameter);
+
+                SqlParameter resultParameter = new SqlParameter("@RESULT", SqlDbType.Bit) { Direction = ParameterDirection.Output };
+                SqlParameter usersIdParameter = new SqlParameter("@USERS_ID", SqlDbType.Int) { Direction = ParameterDirection.Output };
+
+                cmd.Parameters.Add(resultParameter);
+                cmd.Parameters.Add(usersIdParameter);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
-                result = (bool)sqlParameter.Value;
+                result = (bool)resultParameter.Value;
+                usersId = (int)usersIdParameter.Value;
             };
 
             string resultMessage = "Произошла ошибка, не удалось изменить пароль";
@@ -108,7 +116,7 @@ namespace RV_FaceRecognition
             {
                 resultMessage = "Пароль успешно изменён!";
 
-                RecordsManager recordsManager = new RecordsManager(recoveryLogin);
+                RecordsManager recordsManager = new RecordsManager(usersId);
                 recordsManager.RegisterAction(TypeActiom.UpdateUser, $"Был изменён пароль для следующего пользователя: {recoveryLogin}");
             }
 
@@ -141,30 +149,29 @@ namespace RV_FaceRecognition
             {
                 cmd.Parameters.Add(new SqlParameter("@USER_LOGIN", currentLogin));
                 cmd.Parameters.Add(new SqlParameter("@USER_PASSWORD", currentPassword));
-                SqlParameter sqlParameter = new SqlParameter("@RESULT_FLAG", SqlDbType.Bit)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                cmd.Parameters.Add(sqlParameter);
-                SqlParameter sqlParameterSecond = new SqlParameter("@RESULT_ROLE", SqlDbType.SmallInt)
-                {
-                    Direction = ParameterDirection.Output
-                };
-                cmd.Parameters.Add(sqlParameterSecond);
+                
+                SqlParameter resultParameter = new SqlParameter("@RESULT_FLAG", SqlDbType.Bit) { Direction = ParameterDirection.Output };
+                SqlParameter userRoleParameter = new SqlParameter("@RESULT_ROLE", SqlDbType.SmallInt) { Direction = ParameterDirection.Output };
+                SqlParameter usersIdParameter = new SqlParameter("@USERS_ID", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                
+                cmd.Parameters.Add(resultParameter);
+                cmd.Parameters.Add(userRoleParameter);
+                cmd.Parameters.Add(usersIdParameter);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
 
-                result = (bool)sqlParameter.Value;
+                result = (bool)resultParameter.Value;
 
                 if (result)
                 {
+                    this.usersId = (int)usersIdParameter.Value;
                     this.loginValue = currentLogin;
                     this.passwordValue = customTextBoxPassword.Text;
-                    this.roleIdValue = Convert.ToInt16(sqlParameterSecond.Value);
+                    this.roleIdValue = Convert.ToInt16(userRoleParameter.Value);
 
-                    RecordsManager recordsManager = new RecordsManager(this.loginValue);
+                    RecordsManager recordsManager = new RecordsManager(this.usersId);
                     recordsManager.RegisterAction(TypeActiom.Authorize, $"Была выполнена авторизация под следующим пользователем: {this.loginValue}");
                 }
             };

@@ -7,9 +7,9 @@ namespace RV_FaceRecognition.Components.Methods
     public class TokenManager
     {
         private TokenDatabase tokenDatabase;
-        public string Login
+        public int UsersId
         {
-            get => tokenDatabase.Login;
+            get => tokenDatabase.UsersId;
         }
 
         public TokenManager(string connectionString)
@@ -33,13 +33,13 @@ namespace RV_FaceRecognition.Components.Methods
             return false;
         }
 
-        public void SaveTokenToRegistry(string token, string login)
+        public void SaveTokenToRegistry(string token, int usersId)
         {
             // Сохраняем токен в реестре ПК
             RegistryKey registryKey = Registry.CurrentUser.CreateSubKey("Software\\RV-FaceRecognition");
             registryKey.SetValue("Token", token);
 
-            tokenDatabase.SaveToken(token, login);
+            tokenDatabase.SaveToken(token, usersId);
         }
 
         public string GetTokenFromRegistry()

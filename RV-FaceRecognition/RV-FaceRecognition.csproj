@@ -221,6 +221,7 @@
     <Compile Include="Components\Methods\TokenDatabase.cs" />
     <Compile Include="Components\Methods\TokenGenerator.cs" />
     <Compile Include="Components\Methods\TokenManager.cs" />
+    <Compile Include="Components\Methods\UsersDatabase.cs" />
     <Compile Include="Components\RVFormStyle.cs">
       <SubType>Component</SubType>
     </Compile>

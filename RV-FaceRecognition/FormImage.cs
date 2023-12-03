@@ -10,7 +10,7 @@ namespace RV_FaceRecognition
     public partial class FormImage : Form
     {
         #region -- Values --
-        private string login;
+        private int usersId;
 
         private byte[] imageInByte;
 
@@ -25,19 +25,19 @@ namespace RV_FaceRecognition
 
 
         // В сулчае если создаем новый экземпляр сущнсоти
-        public FormImage(string login)
+        public FormImage(int usersId)
         {
             InitializeComponent();
-            this.login = login;
+            this.usersId = usersId;
         }
 
         // В сулчае если получаем ID изображения, мы получаем его из БД и заполняем поля
-        public FormImage(string login, int ID)
+        public FormImage(int usersId, int ID)
         {
             InitializeComponent();
 
             ImageId = ID;
-            this.login = login;
+            this.usersId = usersId;
 
             using (var connection = new SqlConnection(Properties.Settings.Default.rv_facerecognitionConnectionString))
             {
@@ -63,12 +63,12 @@ namespace RV_FaceRecognition
         }
 
         // В случае если мы получили изображение при нажатии на кнопку "Добавить изображение" в главном меню и выбрали пункт добавить в БД
-        public FormImage(string pathToImage, string login)
+        public FormImage(string pathToImage, int usersId)
         {
             InitializeComponent();
             
             imageInByte = ImageToByteArray(System.Drawing.Image.FromFile(pathToImage));
-            this.login = login;
+            this.usersId = usersId;
 
             labelFileName.Text = "Выбранный файл: " + PathToName(pathToImage);
         }
@@ -80,12 +80,14 @@ namespace RV_FaceRecognition
         }
 
         // При нажатии на кнопку выбора файла появляется окно проводника где пользователь выбирает файл формата .jpg размером < 0.75
-        private void customButtonSelectFile_Click(object sender, EventArgs e)
+        private void CustomButtonSelectFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Файлы изображения (*.jpg)|*.jpg";
-            openFileDialog.DefaultExt = "Файлы изображения (*.jpg)|*.jpg";
-            openFileDialog.RestoreDirectory = true;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = "Файлы изображения (*.jpg)|*.jpg",
+                DefaultExt = "Файлы изображения (*.jpg)|*.jpg",
+                RestoreDirectory = true
+            };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -108,7 +110,7 @@ namespace RV_FaceRecognition
         }
 
         // Отправка либо измененного либо нового экземпляра сущности изображения в базу данных
-        private void customButtonOK_Click(object sender, EventArgs e)
+        private void CustomButtonOK_Click(object sender, EventArgs e)
         {
             if (imageInByte != null)
             {
@@ -118,12 +120,12 @@ namespace RV_FaceRecognition
 
                     string query;
                     if (ImageId > 0)
-                        query = "UPDATE IMAGES SET USER_LOGIN = @USER_LOGIN, IMAGE_FILE = @IMAGE_FILE, IMAGE_NAME = @IMAGE_NAME, DATE_UPDATE = @DATE_UPDATE WHERE IMAGE_ID = @IMAGE_ID";
+                        query = "UPDATE IMAGES SET USERS_ID = @USERS_ID, IMAGE_FILE = @IMAGE_FILE, IMAGE_NAME = @IMAGE_NAME, DATE_UPDATE = @DATE_UPDATE WHERE IMAGE_ID = @IMAGE_ID";
                     else
-                        query = "INSERT INTO IMAGES (USER_LOGIN, IMAGE_FILE, IMAGE_NAME) VALUES (@USER_LOGIN, @IMAGE_FILE, @IMAGE_NAME)";
+                        query = "INSERT INTO IMAGES (USERS_ID, IMAGE_FILE, IMAGE_NAME) VALUES (@USERS_ID, @IMAGE_FILE, @IMAGE_NAME)";
                     
                     SqlCommand command = new SqlCommand(query, connection);
-                    command.Parameters.Add(new SqlParameter("@USER_LOGIN", SqlDbType.VarChar, 20) { Value = login });
+                    command.Parameters.Add(new SqlParameter("@USERS_ID", SqlDbType.Int) { Value = usersId });
                     command.Parameters.Add(new SqlParameter("@IMAGE_FILE", SqlDbType.VarBinary) { Value = imageInByte });
                     command.Parameters.Add(new SqlParameter("@IMAGE_NAME", SqlDbType.VarChar, 25) { Value = customTextBoxFullName.Text });
 
@@ -163,7 +165,7 @@ namespace RV_FaceRecognition
         }
 
         // Закрытие модального окна с результатом отмены
-        private void customButtonCancel_Click(object sender, EventArgs e)
+        private void CustomButtonCancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
