@@ -9,6 +9,7 @@ using Emgu.CV;
 using Emgu.CV.CvEnum;
 using Emgu.CV.Face;
 using Emgu.CV.Structure;
+using Emgu.CV.Util;
 using RV_FaceRecognition.Components.Methods;
 
 namespace RV_FaceRecognition
@@ -25,7 +26,7 @@ namespace RV_FaceRecognition
         private TokenDatabase tokenDatabase;
 
         /* Detection values */
-        private Capture videoCapture;
+        private VideoCapture videoCapture;
         private Image<Bgr, Byte> currentFrame;
         private Mat frame;
 
@@ -63,27 +64,38 @@ namespace RV_FaceRecognition
         {
             InitializeComponent();
 
-            // Init variables
-            tokenManager = new TokenManager(Properties.Settings.Default.rv_facerecognitionConnectionString);
-            tokenDatabase = new TokenDatabase(Properties.Settings.Default.rv_facerecognitionConnectionString);
+            try
+            {
+                // Init variables
+                tokenManager = new TokenManager(Properties.Settings.Default.rv_facerecognitionConnectionString);
+                tokenDatabase = new TokenDatabase(Properties.Settings.Default.rv_facerecognitionConnectionString);
 
-            videoCapture = null;
-            currentFrame = null;
-            frame = new Mat();
+                videoCapture = null;
+                currentFrame = null;
+                frame = new Mat();
 
-            facesDetectionEnable = false;
-            enableSaveImage = false;
-            isTrained = false;
+                facesDetectionEnable = false;
+                enableSaveImage = false;
+                isTrained = false;
 
-            faceCascadeClassifier = new CascadeClassifier("haarcascade_frontalface_alt.xml");
+                faceCascadeClassifier = new CascadeClassifier(@".\haarcascade_frontalface_alt.xml");
 
-            personsLabes = new List<int>();
-            personsNames = new List<string>();
-            trainedFaces = new List<Image<Gray, Byte>>();
+                personsLabes = new List<int>();
+                personsNames = new List<string>();
+                trainedFaces = new List<Image<Gray, Byte>>();
 
-            customButtonAddImage.Enabled = false;
-            customButtonInfoWindow.Enabled = false;
-            customButtonRecords.Enabled = false;
+                customButtonAddImage.Enabled = false;
+                customButtonInfoWindow.Enabled = false;
+                customButtonRecords.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                //Write ex.Message to a file
+                using (StreamWriter outfile = new StreamWriter(@".\errorLog.txt"))
+                {
+                    outfile.Write(ex.Message.ToString());
+                }
+            }
         }
 
         #region -- Face Detection --
@@ -92,7 +104,7 @@ namespace RV_FaceRecognition
         {
             if (videoCapture != null) return;
 
-            videoCapture = new Capture();
+            videoCapture = new VideoCapture();
             videoCapture.ImageGrabbed += ProcessFrame;
             videoCapture.Start();
         }
@@ -176,7 +188,7 @@ namespace RV_FaceRecognition
             }
 
             // Render the video capture into the picture box
-            roundedPictureBox1.Image = currentFrame.Bitmap;
+            roundedPictureBox1.Image = currentFrame.ToBitmap();
         }
 
         private void customButtonDetect_Click(object sender, EventArgs e)
@@ -256,7 +268,14 @@ namespace RV_FaceRecognition
                 {
                     // Main function. We will train recognizer on the images and set the border
                     recognizer = new EigenFaceRecognizer(imagesCount, threshold);
-                    recognizer.Train(trainedFaces.ToArray(), personsLabes.ToArray());
+                    
+                    VectorOfInt vectorOfLabels = new VectorOfInt();
+                    VectorOfMat vectorOfFaces = new VectorOfMat();
+
+                    vectorOfLabels.Push(personsLabes.ToArray());
+                    vectorOfFaces.Push(trainedFaces.ToArray());
+
+                    recognizer.Train(vectorOfFaces, vectorOfLabels);
 
                     isTrained = true;
                 }
