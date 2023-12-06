@@ -188,7 +188,14 @@ namespace RV_FaceRecognition
             }
 
             // Render the video capture into the picture box
-            roundedPictureBox1.Image = currentFrame.ToBitmap();
+            try
+            {
+                roundedPictureBox1.Image = currentFrame.ToBitmap();
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
         }
 
         private void customButtonDetect_Click(object sender, EventArgs e)
@@ -313,13 +320,18 @@ namespace RV_FaceRecognition
                 this.password = formLogin.password;
                 this.userRole = formLogin.roleId;
 
-                customButtonAddImage.Enabled = true;
                 customButtonInfoWindow.Enabled = true;
 
                 if (this.userRole == 2)
+                {
+                    customButtonAddImage.Enabled = true;
                     customButtonRecords.Enabled = true;
+                }
                 else
+                {
+                    customButtonAddImage.Enabled = false;
                     customButtonRecords.Enabled = false;
+                }
 
                 string token = TokenGenerator.GenerateRandomToken(64);
                 token = TokenGenerator.ComputeSHA256Hash(token);
@@ -385,13 +397,18 @@ namespace RV_FaceRecognition
                         labelLogin.Text = this.login;
                         labelRole.Text = reader.GetString(3);
 
-                        customButtonAddImage.Enabled = true;
                         customButtonInfoWindow.Enabled = true;
 
                         if (this.userRole == 2)
+                        {
+                            customButtonAddImage.Enabled = true;
                             customButtonRecords.Enabled = true;
-                        else 
+                        }
+                        else
+                        {
+                            customButtonAddImage.Enabled = false;
                             customButtonRecords.Enabled = false;
+                        }
 
                         reader.Close();
                     }
