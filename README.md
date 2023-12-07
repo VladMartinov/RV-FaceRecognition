@@ -19,7 +19,7 @@
 </ol>
 <h4>2-й Вариант:</h4>
 <ol>
-  <li><h5>Скачать файлы с установщиком находящемуся по ссылке: [https://drive.google.com/file/d/1rRooNuAX1q4cKnbCx3zgyZBQVT0xfBes/view?usp=sharing](https://drive.google.com/drive/folders/1peUW9SOlMTp6vbTLqy6rE6fEdNn92rxv?usp=sharing) ;</h5></li>
+  <li><h5>Скачать файлы с установщиком находящемуся по ссылке: https://drive.google.com/drive/folders/1peUW9SOlMTp6vbTLqy6rE6fEdNn92rxv?usp=sharing ;</h5></li>
   <li><h5>Запустить файл и установить приложение в удобнуя для вас директорию;</h5></li>
   <li><h5>Инсталировать базу данных (https://drive.google.com/drive/folders/1peUW9SOlMTp6vbTLqy6rE6fEdNn92rxv?usp=sharing);</h5></li>
   <li><h5>Можно пользоваться приложением!</h5></li>
